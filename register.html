@@ -143,65 +143,76 @@
                 </div>
             </nav>
           
-         
+           <!-- start of register form -->
+    <section class="container-fluid">
+      <section class="row justify-content-left p-5">
+        <section class="col-12 col-sm-6 col-md-4">
+          <form class="form-container border-radius:20px ">
+            <h4 class="text-center font-weight-bold"> REGISTER ASSET </h4>
+            <div class="form-group row">
+              <button type="scan" class="btn btn-success col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="scannedbarcode" placeholder="input_from_scanner">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputasset" class="col-sm-2 col-form-label">Asset</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputasset" placeholder="assset name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputmodel" class="col-sm-2 col-form-label">Model</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputmodel" placeholder="inputmodel">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputtype" class="col-sm-2 col-form-label">Type</label>
+              <div class="col-sm-10">
+                <!-- <input type="text" class="form-control" id="inputtype" placeholder="select"> -->
+                <select class="form-control" id="typeselect">
+                  <option>consumable</option>
+                  <option>fixed</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputdate" class="col-sm-2 col-form-label">Date</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="date" placeholder="select todays date">
+              </div>
+            </div>
+            
+            <div class="form-inline ">
+
+              <!-- <button type="submit" class="btn btn-primary p-5">save</button>
+              <button type="submit" class="btn btn-primary p">delete</button> -->
+              <button type="save" class="btn btn-success col-sm-2 border-2 "><i class="fa fa-floppy-o"></i>|save</button>
+              <button type="add" class="btn btn-success col-sm-2  "><i class="fa fa-plus"></i>|add</button>
+              <button type="scan" class="btn btn-success col-sm-2  "><i class="fa fa-trash"></i>|delete</button>
+
+              <!-- <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">save</button>
+              </div>
+              <div class="col-sm-10 ">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+              </div> -->
+                
+            </div>
+            
+          </form>
+    
+        </section>
+
+      </section>
+   
+
+    </section>
         </div>
     </div>
-    <form>
-        <div class="form-group row">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-          <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-          </div>
-        </div>
-        <fieldset class="form-group">
-          <div class="row">
-            <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-            <div class="col-sm-10">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                <label class="form-check-label" for="gridRadios1">
-                  First radio
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                <label class="form-check-label" for="gridRadios2">
-                  Second radio
-                </label>
-              </div>
-              <div class="form-check disabled">
-                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-                <label class="form-check-label" for="gridRadios3">
-                  Third disabled radio
-                </label>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-        <div class="form-group row">
-          <div class="col-sm-2">Checkbox</div>
-          <div class="col-sm-10">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck1">
-              <label class="form-check-label" for="gridCheck1">
-                Example checkbox
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </div>
-        </div>
-      </form>
-
+     
+    
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
@@ -209,13 +220,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
+<!-- javascipt to automate toggle the side bar  -->
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
         });
+    </script>
+ <!-- autofill date for the date input field -->
+ <script type="text/javascript">
+      document.getElementById('date').value = Date();
     </script>
    
     
