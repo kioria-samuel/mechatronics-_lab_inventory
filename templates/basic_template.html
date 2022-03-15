@@ -57,15 +57,15 @@
                     </a>
                     <ul class="collapse list-unstyled" id="borrowmenu">
                         <li>
-                            <a href="borrow.html">Borrow</a>
+                            <a href="{% url 'borrow' %}">Borrow</a>
                         </li>
                         <li>
-                            <a href="return.html">Return</a>
+                            <a href="{% url 'return' %}">Return</a>
                         </li>
                        
                     </ul>
   
-                    <a href="#">
+                    <a href="{% url 'identify' %}">
                         <!-- <i class="fa-solid fa-scanner-gun"></i> -->
                         <i class="fas fa-barcode"></i>
                        
