@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,17 +11,17 @@
     <link rel="stylesheet" href="style4.css">
 
     <!-- Font Awesome JS -->
-    <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script> -->
     <script src="https://kit.fontawesome.com/cf3b94705e.js" crossorigin="anonymous"></script>
      <!-- jquery cdn link -->
      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <!-- adding datable cdn -->
+      <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+     <!-- css  jquery data table link -->
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> 
 
 </head>
-
 <body>
-
-    <div class="wrapper">
+<div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header d-inline-block">
@@ -36,12 +33,12 @@
             <ul class="list-unstyled components">
                 
                 <li>
-                    <a href="#">
+                    <a href="test.php">
                         <i class="fas fa-home"></i>
                         Home
                     </a>
                 <li>
-                    <a href="register.html">
+                    <a href="register.php">
                         <i class="fas fa-feather-alt"></i>
                         Register
                     </a>
@@ -52,15 +49,15 @@
                     </a>
                     <ul class="collapse list-unstyled" id="borrowmenu">
                         <li>
-                            <a href="borrow.html">Borrow</a>
+                            <a href="borrow.php">Borrow</a>
                         </li>
                         <li>
-                            <a href="return.html">Return</a>
+                            <a href="return.php">Return</a>
                         </li>
                        
                     </ul>
   
-                    <a href="#">
+                    <a href="identify.php">
                         <!-- <i class="fa-solid fa-scanner-gun"></i> -->
                         <i class="fas fa-barcode"></i>
                        
@@ -73,25 +70,25 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="transactions copy.html">Transactions</a>
+                            <a href="transcations.php">Transactions</a>
                         </li>
                         <li>
-                            <a href="overdue.html">Overdue</a>
+                            <a href="overdue.php">Overdue</a>
                         </li>
                         <li>
                             <a href="#">Defaulters</a>
                         </li>
                         <li>
-                            <a href="Instock.html">Instock</a>
+                            <a href="Instock.php">Instock</a>
                         </li>
                         <li>
-                            <a href="#">Damaged</a>
+                            <a href="damaged.html">Damaged</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
-                        <!-- <i class="fas fa-cog"></i> -->    <i class="fas fa-cog fa-spin"></i>
+                    <a href="profile.php">
+                            <i class="fas fa-cog fa-spin"></i>
 
 
                         Settings
@@ -102,7 +99,7 @@
         </nav>
 
         <!-- Page Content  -->
-        <div id="content">
+                     <div id="content">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
                 <div class="container-fluid">
@@ -124,8 +121,7 @@
     </div>
   </div>
     <!-- searchbar  end-->
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         
                         <ul class="nav navbar-nav ml-auto">
                            
@@ -140,87 +136,16 @@
                                 <a class="nav-link" href="#">Page</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
+                                <span class="badge badge-pill badge-warning"style="float:"> 134</span>
+                                <a class="nav-link" href="/News/">News<span class="sr-only">(current)<m:-15px/span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="login.html"> 
+                                <a class="nav-link" href="logout.php"> 
                                     <i class="fas fa-sign-out-alt fa-2xl "></i></a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-          
-           <!-- start of register form -->
-    <section class="container-fluid">
-      <section class="row justify-content-left p-5">
-        <section class="col-12 col-sm-6 col-md-4">
-          <form class="form-container border-radius:20px ">
-            <h4 class="text-center font-weight-bold"> IDENTIFY ASSET </h4>
-            <div class="form-group row">
-              <button type="scan" class="btn btn-success col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="scannedbarcode" placeholder="input_from_scanner">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputasset" class="col-sm-2 col-form-label">Asset</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputasset" placeholder="assset name">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputmodel" class="col-sm-2 col-form-label">Model</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputmodel" placeholder="inputmodel">
-              </div>
-            </div>
             
-            <div class="form-inline-block">
-
-              <!-- <button type="save" class="btn btn-success col-sm-3  "><i class="fa fa-floppy-o"></i>|save</button> -->
-              <button type="add" id="types" class="btn btn-success col-sm-2"><a href="register.html"></a><i class="fa fa-plus"></i>|add</button>
-              <!-- <button type="scan" class="btn btn-success col-sm-3  "><i class="fa fa-trash"></i>|delete</button> -->
-
-
-             
-                
-            </div>
-            
-          </form>
-    
-        </section>
-
-      </section>
-   
-
-    </section>
-        </div>
-    </div>
-     
-    
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<!-- javascipt to automate toggle the side bar  -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
- <!-- autofill date for the date input field
- <script type="text/javascript">
-      document.getElementById('date').value = Date();
-    </script> -->
-   
-    
-
-</body>
-
-</html>
+ 

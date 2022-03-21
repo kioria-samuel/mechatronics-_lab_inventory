@@ -1,3 +1,18 @@
+<?php
+// We need to use sessions, so you should always start sessions using the below code.
+session_start();
+// Include config file
+require_once "config.php";
+// We don't have the password or email info stored in sessions so instead we can get the results from the database.
+$stmt = $con->prepare('SELECT password, email FROM accounts WHERE id = ?');
+// In this case we can use the account ID to get the account info.
+$stmt->bind_param('i', $_SESSION['id']);
+$stmt->execute();
+$stmt->bind_result($password, $email);
+$stmt->fetch();
+$stmt->close();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -19,6 +34,8 @@
     <script src="https://kit.fontawesome.com/cf3b94705e.js" crossorigin="anonymous"></script>
      <!-- jquery cdn link -->
      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+   
+     
 
 </head>
 
@@ -36,7 +53,7 @@
             <ul class="list-unstyled components">
                 
                 <li>
-                    <a href="basic_template.html">
+                    <a href="#">
                         <i class="fas fa-home"></i>
                         Home
                     </a>
@@ -46,20 +63,21 @@
                         Register
                     </a>
                     <a href="#borrowmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                      <!-- <i class="fas fa-copy"></i> -->
-                      <i class="fa-solid fa-hand-holding-dollar"></i>
-                      Borrow/Return
-                  </a>
-                  <ul class="collapse list-unstyled" id="borrowmenu">
-                      <li>
-                          <a href="borrow.html">Borrow</a>
-                      </li>
-                      <li>
-                          <a href="return.html">Return</a>
-                      </li>
-                     
-                  </ul>
-                    <a href="identify.html">
+                        <!-- <i class="fas fa-copy"></i> -->
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                        Borrow/Return
+                    </a>
+                    <ul class="collapse list-unstyled" id="borrowmenu">
+                        <li>
+                            <a href="borrow.html">Borrow</a>
+                        </li>
+                        <li>
+                            <a href="return.html">Return</a>
+                        </li>
+                       
+                    </ul>
+  
+                    <a href="#">
                         <!-- <i class="fa-solid fa-scanner-gun"></i> -->
                         <i class="fas fa-barcode"></i>
                        
@@ -72,25 +90,25 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="transactions.html">Transactions</a>
+                            <a href="transactions copy.html">Transactions</a>
                         </li>
                         <li>
                             <a href="overdue.html">Overdue</a>
                         </li>
                         <li>
-                            <a href="defaulters.html">Defaulters</a>
+                            <a href="#">Defaulters</a>
                         </li>
                         <li>
                             <a href="Instock.html">Instock</a>
                         </li>
                         <li>
-                            <a href="damaged.html">Damaged</a>
+                            <a href="damaged">Damaged</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">
-                        <!-- <i class="fas fa-cog"></i> -->    <i class="fas fa-cog fa-spin"></i>
+                            <i class="fas fa-cog fa-spin"></i>
 
 
                         Settings
@@ -139,82 +157,55 @@
                                 <a class="nav-link" href="#">Page</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
+                                <span class="badge badge-pill badge-warning"style="float:"> 134</span>
+                                <a class="nav-link" href="/News/">News<span class="sr-only">(current)<m:-15px/span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="login.html"> 
+                                <a class="nav-link" href="index.html"> 
                                     <i class="fas fa-sign-out-alt fa-2xl "></i></a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
+            <div class="row py-6">
+                    <div class="col-lg-12 mx-auto">
+                      <div class="card rounded shadow border-0">
+                        <div class="card-body p-5 bg-white rounded">
+                          <div class="table-responsive">
+                            <table id="mytable" style="width:100%" class="table table-striped table-bordered">
+                              <thead>
+                              <tr>
+                              <td>account details</td>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                  <td>username</td>
+                                  <td><?=$_SESSION['name']?></td>
+                                  </tr>
+                                  <tr>
+						                <td>Password:</td>
+						                <td><?=$password?></td>
+					                </tr>
+                                 <tr>
+						<td>Email:</td>
+						<td><?=$email?></td>
+					            </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
           
-           <!-- start of register form -->
-    <section class="container-fluid">
-      <section class="row justify-content-left p-5">
-        <section class="col-12 col-sm-6 col-md-4">
-          <form class="form-container border-radius:20px ">
-            <h4 class="text-center font-weight-bold"> REGISTER ASSET </h4>
-            <div class="form-group row">
-              <button type="scan" class="btn btn-success col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="scannedbarcode" placeholder="input_from_scanner">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputasset" class="col-sm-2 col-form-label">Asset</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputasset" placeholder="assset name">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputmodel" class="col-sm-2 col-form-label">Model</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputmodel" placeholder="inputmodel">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputtype" class="col-sm-2 col-form-label">Type</label>
-              <div class="col-sm-10">
-                <!-- <input type="text" class="form-control" id="inputtype" placeholder="select"> -->
-                <select class="form-control" id="typeselect">
-                  <option>consumable</option>
-                  <option>fixed</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputdate" class="col-sm-2 col-form-label">Date</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="date" placeholder="select todays date">
-              </div>
-            </div>
-            
-            <div class="form-inline-block">
-
-              <!-- <button type="submit" class="btn btn-primary p-5">save</button>
-              <button type="submit" class="btn btn-primary p">delete</button> -->
-              <button type="save" class="btn btn-success col-sm-3  "><i class="fa fa-floppy-o"></i>|save</button>
-              <button type="add" class="btn btn-success col-sm-2  "><i class="fa fa-plus"></i>|add</button>
-              <button type="scan" class="btn btn-success col-sm-3  "><i class="fa fa-trash"></i>|delete</button>
-
-             
-                
-            </div>
-            
-          </form>
-    
-        </section>
-
-      </section>
-   
-
-    </section>
+         
+          
         </div>
     </div>
-     
-    
+
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
@@ -222,7 +213,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<!-- javascipt to automate toggle the side bar  -->
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
@@ -230,11 +221,7 @@
             });
         });
     </script>
- <!-- autofill date for the date input field -->
- <script type="text/javascript">
-      document.getElementById('date').value = Date();
-    </script>
-   
+ 
     
 
 </body>
