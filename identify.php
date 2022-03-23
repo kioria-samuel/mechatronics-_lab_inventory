@@ -1,6 +1,6 @@
 <!DOCTYE html>
 <html>
-//include the header redundant code or every page
+
     <?php include('header.php');?> 
     <!-- start of register form -->
     <section class="container-fluid">
@@ -46,5 +46,5 @@
    
 
     </section>
-    <?php include('footer.php');?>//include the footer redundant code or every page
+    <?php include('footer.php');?>
 </html>

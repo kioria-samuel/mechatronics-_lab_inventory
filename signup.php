@@ -15,7 +15,7 @@ if (empty($_POST['username']) || empty($_POST['password']) ||empty($_POST['confi
 //email validation
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 	//exit('Email is not valid!');
-	$emai_err="";
+	//$emai_err="";
 //username validation
 if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['username']) == 0) {
 		exit('Username is not valid!');
