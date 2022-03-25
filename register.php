@@ -17,7 +17,7 @@ if(isset($_POST['save'])){
     $errors['assetno'] ='asset no required!';
   }else{
     $assetno=$_POST['assetno'];
-    if(preg_match('/^[a-zA-Z0-9]+$/', $assetno ) == 0){
+    if(!preg_match('/^[a-zA-Z0-9]+$/', $assetno ) == 0){
       $errors['assetno'] ='assetno invalid!';
     }
   }
@@ -26,7 +26,7 @@ if(isset($_POST['save'])){
     $errors['assetname'] = 'asset name required!';
   }else{
     $assetname=$_POST['assetname'];
-    if(preg_match('/^[a-zA-Z0-9]+$/',$assetname ) == 0){
+    if(!preg_match('/^[a-zA-Z0-9]-+$/',$assetname ) == 0){
       $errors['assetname'] ='assetname invalid!';
     }
   }
@@ -35,7 +35,7 @@ if(isset($_POST['save'])){
     $errors['model'] = 'model required!';
   }else{
     $model=$_POST['model'];
-    if(preg_match('/^[a-zA-Z0-9]-+$/',$model ) == 0){
+    if(!preg_match('/^[a-zA-Z0-9]+$/',$model ) == 0){
       $errors['model'] ='model invalid!';
     }
   }
@@ -84,7 +84,7 @@ if(isset($_POST['save'])){
           <form class="form-container border-radius:20px" action="register.php" method="post">
             <h4 class="text-center font-weight-bold"> REGISTER ASSET </h4>
             <div class="form-group row">
-              <button type="scan" class="btn btn-success col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
+              <!-- <button type="scan" class="btn btn-success col-sm-2  "><i class="fa fa-barcode"></i>|scan</button> -->
               <div class="col-sm-10">
                 <input type="text" class="form-control" name ="assetno" value="<?php echo htmlspecialchars( $assetno) ?>" id="scannedbarcode" placeholder="input_from_scanner">
                 <div class="text-danger"><?php echo $errors['assetno'];?></div>
@@ -115,13 +115,7 @@ if(isset($_POST['save'])){
                 <div class="text-danger"><?php echo $errors['type'];?></div>
               </div>
             </div>
-            <!-- <div class="form-group row">
-              <label for="inputdate" class="col-sm-2 col-form-label">Date</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="date" placeholder="select todays date">
-              </div>
-            </div> -->
-            
+             
             <div class="form-inline-block">
 
               <!-- <button type="submit" class="btn btn-primary p-5">save</button>

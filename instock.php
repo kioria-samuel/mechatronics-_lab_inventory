@@ -1,4 +1,23 @@
+<?php
 
+// establish a connecion to the database
+include ("config.php") ;
+//construct query
+$sql='SELECT asset_no,asset_name,model,type,created_at  FROM assets ORDER BY created_at';
+//make the query
+$result=mysqli_query($con,$sql);
+//fetch the results from the query as an array
+$assets=mysqli_fetch_all($result,MYSQLI_ASSOC);
+//ree thersult o query rom memory
+mysqli_free_result($result);
+//close connection
+mysqli_close($con);
+
+//print_r($assets);
+
+
+
+?>
 <!DOCTYE html>
 <html>
 
@@ -15,228 +34,28 @@
                                   <th>Asset no</th>
                                   <th>Asset</th>
                                   <th>Model</th>
-                                  <th>Quantity</th>
-                                  <th>Status</th>
-                                  <th>Reg date</th>
+                                  <th>type</th>
+                                  <th>created_at</th>
+                                 
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td>345665</td>
-                                  <td>Electrical wiring sytem</td>
+                                <?php foreach($assets as $asset){?>
+                                  <tr>
+                                  <td><?php echo htmlspecialchars($asset['asset_no']);?></td>
+                                  <td><?php echo htmlspecialchars($asset['asset_name']);?></td>
+                                  <td><?php echo htmlspecialchars($asset['model']);?></td>
+                                  <td><?php echo htmlspecialchars($asset['type']);?></td>
+                                  <td><?php echo htmlspecialchars($asset['created_at']);?></td>
+                                  <!-- <td>Electrical wiring sytem</td>
                                   <td>85-MT6</td>
                                   <td>2</td>
                                   <td>okey</td>
-                                  <td>16/05/2015</td>
+                                  <td>16/05/2015</td> -->
                                 </tr>
-                                <tr>
-                                  <td>213457</td>
-                                  <td>motor control sytem</td>
-                                  <td>85-MT5</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>342343</td>
-                                  <td>AC/DC electrical sytem</td>
-                                  <td>T7017</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>345665</td>
-                                  <td>Electrical wiring sytem</td>
-                                  <td>85-MT6</td>
-                                  <td>2</td>
-                                  <td>okey</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>213457</td>
-                                  <td>motor control sytem</td>
-                                  <td>85-MT5</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>342343</td>
-                                  <td>AC/DC electrical sytem</td>
-                                  <td>T7017</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>345665</td>
-                                  <td>Electrical wiring sytem</td>
-                                  <td>85-MT6</td>
-                                  <td>2</td>
-                                  <td>okey</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>213457</td>
-                                  <td>motor control sytem</td>
-                                  <td>85-MT5</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>342343</td>
-                                  <td>AC/DC electrical sytem</td>
-                                  <td>T7017</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>345665</td>
-                                  <td>Electrical wiring sytem</td>
-                                  <td>85-MT6</td>
-                                  <td>2</td>
-                                  <td>okey</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>213457</td>
-                                  <td>motor control sytem</td>
-                                  <td>85-MT5</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>342343</td>
-                                  <td>AC/DC electrical sytem</td>
-                                  <td>T7017</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>345665</td>
-                                  <td>Electrical wiring sytem</td>
-                                  <td>85-MT6</td>
-                                  <td>2</td>
-                                  <td>okey</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>213457</td>
-                                  <td>motor control sytem</td>
-                                  <td>85-MT5</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>342343</td>
-                                  <td>AC/DC electrical sytem</td>
-                                  <td>T7017</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>345665</td>
-                                  <td>Electrical wiring sytem</td>
-                                  <td>85-MT6</td>
-                                  <td>2</td>
-                                  <td>okey</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>213457</td>
-                                  <td>motor control sytem</td>
-                                  <td>85-MT5</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>342343</td>
-                                  <td>AC/DC electrical sytem</td>
-                                  <td>T7017</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>345665</td>
-                                  <td>Electrical wiring sytem</td>
-                                  <td>85-MT6</td>
-                                  <td>2</td>
-                                  <td>okey</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>213457</td>
-                                  <td>motor control sytem</td>
-                                  <td>85-MT5</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>342343</td>
-                                  <td>AC/DC electrical sytem</td>
-                                  <td>T7017</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>345665</td>
-                                  <td>Electrical wiring sytem</td>
-                                  <td>85-MT6</td>
-                                  <td>2</td>
-                                  <td>okey</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>213457</td>
-                                  <td>motor control sytem</td>
-                                  <td>85-MT5</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>342343</td>
-                                  <td>AC/DC electrical sytem</td>
-                                  <td>T7017</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>345665</td>
-                                  <td>Electrical wiring sytem</td>
-                                  <td>85-MT6</td>
-                                  <td>2</td>
-                                  <td>okey</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>213457</td>
-                                  <td>motor control sytem</td>
-                                  <td>85-MT5</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
-                                <tr>
-                                  <td>342343</td>
-                                  <td>AC/DC electrical sytem</td>
-                                  <td>T7017</td>
-                                  <td>2</td>
-                                  <td>OKEY</td>
-                                  <td>16/05/2015</td>
-                                </tr>
+                                  <?php
+                                  
+                                } ?>
                                
                               </tbody>
                             </table>
