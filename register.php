@@ -17,7 +17,7 @@ if(isset($_POST['save'])){
     $errors['assetno'] ='asset no required!';
   }else{
     $assetno=$_POST['assetno'];
-    if(!preg_match('/^[a-zA-Z0-9]+$/', $assetno ) == 0){
+    if(!preg_match('/^[a-zA-Z0-9]+$/', $assetno ) === 0){//ine tuning my validation
       $errors['assetno'] ='assetno invalid!';
     }
   }
@@ -26,7 +26,7 @@ if(isset($_POST['save'])){
     $errors['assetname'] = 'asset name required!';
   }else{
     $assetname=$_POST['assetname'];
-    if(!preg_match('/^[a-zA-Z0-9]-+$/',$assetname ) == 0){
+    if(!preg_match('/^[a-zA-Z0-9]+$/',$assetname ) === 0){
       $errors['assetname'] ='assetname invalid!';
     }
   }
@@ -50,7 +50,7 @@ if(isset($_POST['save'])){
     if(array_filter($errors)){
 
     }else{
-      $assetno=mysqli_real_escape_string($con,$_POST['email']);
+      $assetno=mysqli_real_escape_string($con,$_POST['assetno']);
       $assetname=mysqli_real_escape_string($con,$_POST['assetname']);
       $model=mysqli_real_escape_string($con,$_POST['model']);
       $type=mysqli_real_escape_string($con,$_POST['type']);
@@ -84,7 +84,7 @@ if(isset($_POST['save'])){
           <form class="form-container border-radius:20px" action="register.php" method="post">
             <h4 class="text-center font-weight-bold"> REGISTER ASSET </h4>
             <div class="form-group row">
-              <!-- <button type="scan" class="btn btn-success col-sm-2  "><i class="fa fa-barcode"></i>|scan</button> -->
+              <button type="scan" class="btn btn-success col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
               <div class="col-sm-10">
                 <input type="text" class="form-control" name ="assetno" value="<?php echo htmlspecialchars( $assetno) ?>" id="scannedbarcode" placeholder="input_from_scanner">
                 <div class="text-danger"><?php echo $errors['assetno'];?></div>

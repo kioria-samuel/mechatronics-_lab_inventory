@@ -3,7 +3,7 @@
 // establish a connecion to the database
 include ("config.php") ;
 //construct query
-$sql='SELECT asset_no,asset_name,model,type,created_at  FROM assets ORDER BY created_at';
+$sql='SELECT id, asset_no,asset_name,model,type,created_at  FROM assets ORDER BY created_at';
 //make the query
 $result=mysqli_query($con,$sql);
 //fetch the results from the query as an array
@@ -31,6 +31,7 @@ mysqli_close($con);
                             <table id="mytable" style="width:100%" class="table table-striped table-bordered">
                               <thead>
                                 <tr>
+                                  <th>id</th>
                                   <th>Asset no</th>
                                   <th>Asset</th>
                                   <th>Model</th>
@@ -42,16 +43,13 @@ mysqli_close($con);
                               <tbody>
                                 <?php foreach($assets as $asset){?>
                                   <tr>
+                                  <td><?php echo htmlspecialchars($asset['id']);?></td>
                                   <td><?php echo htmlspecialchars($asset['asset_no']);?></td>
                                   <td><?php echo htmlspecialchars($asset['asset_name']);?></td>
                                   <td><?php echo htmlspecialchars($asset['model']);?></td>
                                   <td><?php echo htmlspecialchars($asset['type']);?></td>
                                   <td><?php echo htmlspecialchars($asset['created_at']);?></td>
-                                  <!-- <td>Electrical wiring sytem</td>
-                                  <td>85-MT6</td>
-                                  <td>2</td>
-                                  <td>okey</td>
-                                  <td>16/05/2015</td> -->
+                                 
                                 </tr>
                                   <?php
                                   
