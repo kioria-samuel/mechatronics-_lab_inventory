@@ -3,7 +3,7 @@
 // establish a connecion to the database
 include ("config.php") ;
 //construct query
-$sql='SELECT  asset_no,tech_name,department,reg_no,borrow_date,period,return_date,condition_,status_  FROM borrow ';
+$sql='SELECT  asset_no,condition_,status_  FROM borrow where condition_="okey"';
 //make the query
 $result=mysqli_query($con,$sql);
 //fetch the results from the query as an array
@@ -31,12 +31,7 @@ mysqli_close($con);
                               <thead class="text-danger font-weight-bold">
                                 <tr>
                                   <th>Asset no</th>
-                                  <th>Tech name</th>
-                                  <th>Department</th>
-                                  <th>Reg No</th>
-                                  <th> Borrow date</th>
-                                  <th>Period</th>
-                                  <th>Return date</th>
+                        
                                   <th>Condition</th>
                                   <th>Status</th>
                                 </tr>
@@ -45,12 +40,7 @@ mysqli_close($con);
                                 <?php foreach($borrows as $borrow){?>
                                   <tr>
                                   <td><?php echo htmlspecialchars($borrow['asset_no']);?></td>
-                                  <td><?php echo htmlspecialchars($borrow['tech_name']);?></td>
-                                  <td><?php echo htmlspecialchars($borrow['department']);?></td>
-                                  <td><?php echo htmlspecialchars($borrow['reg_no']);?></td>
-                                  <td><?php echo htmlspecialchars($borrow['borrow_date']);?></td>
-                                  <td><?php echo htmlspecialchars($borrow['period']);?></td>
-                                  <td><?php echo htmlspecialchars($borrow['return_date']);?></td>
+                                 
                                   <td><?php echo htmlspecialchars($borrow['condition_']);?></td>
                                   <td><?php echo htmlspecialchars($borrow['status_']);?></td>
                                  

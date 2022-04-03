@@ -3,6 +3,9 @@
 require_once("config.php") ;
 $assetno=$status='';
 $assetname=$model='';
+//initialize error variables
+$assetno=$assetname=$model=$type=$techname=$departm=$regno=$period=$returnd='';
+$errors=array('assetno'=>'','techname'=>'','departm'=>'','regno'=>'','period'=>'','returnd'=>'');
 if(isset($_POST['submit'])){
 // echo 'there is something';
  // Prepare a select statement
@@ -46,12 +49,9 @@ if(isset($_POST['submit'])){
 
 }else{
   $status="please scan";
-  exit($status);
-}
-//inserting records to my sql database 
-//initialize error variables
-$assetno=$assetname=$model=$type='';
-$errors=array('assetno'=>'','techname'=>'','departm'=>'','regno'=>'','period'=>'','returnd'=>'');
+  //exit($status);
+  //inserting records to my sql database 
+
 //check if the data is sent by the post method to the server
 if(isset($_POST['save'])){
 //startvalidating  user data
@@ -69,7 +69,7 @@ if(isset($_POST['save'])){
     $errors['techname'] = 'tech name required!';
   }else{
     $techname=$_POST['techname'];
-    if(!preg_match('/^[a-zA-Z0-9]+$/',$assetname ) === 0){
+    if(!preg_match('/^[a-zA-Z0-9]+$/',$techname ) === 0){
       $errors['techname'] ='techname invalid!';
     }
   }
@@ -78,7 +78,7 @@ if(isset($_POST['save'])){
     $errors['departm'] = 'department required!';
   }else{
     $departm=$_POST['departm'];
-    if(!preg_match('/^[a-zA-Z0-9]+$/',$model ) == 0){
+    if(!preg_match('/^[a-zA-Z0-9]+$/',$departm ) === 0){
       $errors['departm'] ='department invalid!';
     }
   }
@@ -87,7 +87,7 @@ if(isset($_POST['save'])){
     $errors['regno'] = 'regno required!';
   }else{
     $regno=$_POST['regno'];
-    if(preg_match('/^[a-zA-Z0-9]+$/', $type) == 0){
+    if(!preg_match('/^[a-zA-Z0-9]+$/', $regno) ==0){
       $errors['regno'] ='type invalid!';
     }
   }
@@ -96,30 +96,34 @@ if(isset($_POST['save'])){
     $errors['period'] = 'period required!';
   }else{
     $period=$_POST['period'];
-    if(preg_match('/^[a-zA-Z0-9]+$/', $type) == 0){
+    if(!preg_match('/^[a-zA-Z0-9]+$/', $period) === 0){
       $errors['period'] ='period invalid!';
     }
-     //check period
+  }
+   //check type
   if (empty($_POST['returnd'])){
-    $errors['returnd'] = 'returnd required!';
+    $errors['returnd'] = 'return date required!';
   }else{
-    $period=$_POST['returnd'];
-    if(preg_match('/^[a-zA-Z0-9]+$/', $type) == 0){
-      $errors['returnd'] ='return date invalid!';
+    $returnd=$_POST['returnd'];
+    if(!preg_match('/^[a-zA-Z0-9]+$/', $returnd) == 0){
+      $errors['returnd'] ='type invalid!';
     }
+  }
     if(array_filter($errors)){
 
     }else{
       $assetno=mysqli_real_escape_string($con,$_POST['assetno']);
-      $assetname=mysqli_real_escape_string($con,$_POST['assetname']);
-      $model=mysqli_real_escape_string($con,$_POST['model']);
-      $type=mysqli_real_escape_string($con,$_POST['type']);
+      $techname=mysqli_real_escape_string($con,$_POST['techname']);
+      $departm=mysqli_real_escape_string($con,$_POST['departm']);
+      $regno=mysqli_real_escape_string($con,$_POST['regno']);
+      $period=mysqli_real_escape_string($con,$_POST['period']);
+      $returnd=mysqli_real_escape_string($con,$_POST['returnd']);
       //create a variable sql
-      $sql="INSERT INTO assets(asset_no,asset_name,model,type)VALUES('$assetno','$assetname' , '$model','$type')";
+      $sql="INSERT INTO borrow(asset_no,tech_name,department,reg_no,period,return_date)VALUES('$assetno','$techname', '$departm','$regno','$period','$returnd')";
      
       //SAVE TO DB AND CHECK
     if(mysqli_query($con, $sql)){
-      header('location:register.php');
+      header('location:borrow.php');
     }else{
       echo 'query error:'.mysqli_error($conn);
     }
@@ -130,13 +134,16 @@ if(isset($_POST['save'])){
   //end of post check validation
   
 }
-}
+
+
+
 
 
 ?>
   <!DOCTYE html>
 <html>
     <?php include('header.php');?>
+   
       <!-- start of register form -->
       <section class="container-fluid">
       <section class="row justify-content-left p-5">
@@ -161,7 +168,7 @@ if(isset($_POST['save'])){
             <div class="form-group row">
               <label for="inputtechname" class="col-sm-2 col-form-label">Tech Name</label>
               <div class="col-sm-10">
-                <input type="text" name="techname" class="form-control" id="inputtechanme" placeholder="inputtechname">
+                <input type="text" name="techname"value="<?php echo htmlspecialchars($techname)?>" class="form-control" id="inputtechanme" placeholder="inputtechname">
                 <div class="text-danger"><?php echo $errors['techname'];?></div>
               </div>
             </div>
@@ -170,13 +177,12 @@ if(isset($_POST['save'])){
               <label for="inputtype" class="col-sm-2 col-form-label">Department</label>
               <div class="col-sm-10">
                 <!-- <input type="text" class="form-control" id="inputtype" placeholder="select"> -->
-                <select class="form-control" id="typeselect" name="departm">
+                <select class="form-control" id="typeselect" value="<?php echo htmlspecialchars($departm)?>" name="departm">
                   <option>mechatronics</option>
                   <option>electrical</option>
                   <option>mechanical</option>
                   <option>civil</option>
-                  <!-- <option></option>
-                  <option>electrical</option> -->
+                
                 </select>
                 <div class="text-danger"><?php echo $errors['departm'];?></div>
               </div>
@@ -184,21 +190,22 @@ if(isset($_POST['save'])){
             <div class="form-group row">
               <label for="inputRegno" class="col-sm-2 col-form-label">REG NO</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="regno" id="inputRegno" placeholder="inputregno">
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($regno)?>" name="regno" id="inputRegno" placeholder="inputregno">
                 <div class="text-danger"><?php echo $errors['regno'];?></div>
               </div>
             </div>
             <div class="form-group row">
               <label for="inputtechname" class="col-sm-2 col-form-label">Period</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="period" id="inputtechanme" placeholder="return_date">
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($period)?>" name="period" id="inputtechanme" placeholder="return_date">
                 <div class="text-danger"><?php echo $errors['period'];?></div>
               </div>
+              
             </div>
             <div class="form-group row">
               <label for="inputtechname" class="col-sm-2 col-form-label">Return date</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="returnd" id="inputtechanme" placeholder="return_date">
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($returnd)?>"  name="returnd" id="inputtechanme" placeholder="return_date">
                 <div class="text-danger"><?php echo $errors['returnd'];?></div>
               </div>
             </div>

@@ -15,14 +15,16 @@
             });
         });
     </script>
-    <!-- autofill date for the date input field -->
+    <!-- autofill date for the date input field
  <script type="text/javascript">
       document.getElementById('date').value = Date();
     </script>
     <!-- document ready function for sorting out table records -->
-    <script >
+    <script > -->
   $(document).ready(function() {
     $("#mytable").dataTable();
 } );
     </script>
+     <script src="/ECN/Ztools/CalendarControl/CalendarControl.js"
+        language="javascript"></script>
 </body>

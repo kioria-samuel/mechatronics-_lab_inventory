@@ -18,6 +18,9 @@
       <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
      <!-- css  jquery data table link -->
      <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> 
+<!-- calendar  -->
+<link href="/ECN/Ztools/CalendarControl/CalendarControl.css"
+      rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -82,7 +85,7 @@
                             <a href="Instock.php">Instock</a>
                         </li>
                         <li>
-                            <a href="damaged.html">Damaged</a>
+                            <a href="damaged.php">Damaged</a>
                         </li>
                     </ul>
                 </li>

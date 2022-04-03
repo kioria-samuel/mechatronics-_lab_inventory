@@ -1,6 +1,7 @@
 <?php
 // Include config file
-// require_once("config.php") ;
+require_once("config.php") ;
+
 $assetno=$assetname=$status='';
 if(isset($_POST['submit'])){
 // echo 'there is something';
