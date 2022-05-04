@@ -21,7 +21,6 @@
 <!-- calendar  -->
 <link href="/ECN/Ztools/CalendarControl/CalendarControl.css"
       rel="stylesheet" type="text/css">
-
 </head>
 <body>
 <div class="wrapper">
@@ -92,8 +91,6 @@
                 <li>
                     <a href="profile.php">
                             <i class="fas fa-cog fa-spin"></i>
-
-
                         Settings
                     </a>
                 </li>
@@ -102,45 +99,33 @@
         </nav>
 
         <!-- Page Content  -->
-                     <div id="content">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-                <div class="container-fluid">
+        <div id="content">
+      <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+      <div class="container-fluid">
 <!-- button collapsible -->
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                        <!-- <span>Toggle Sidebar</span> -->
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
+     <button type="button" id="sidebarCollapse" class="btn btn-info">
+      <i class="fas fa-align-left"></i>
+    <!-- <span>Toggle Sidebar</span> -->
+     </button>
+    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <i class="fas fa-align-justify"></i>
+    </button>
    <!-- searchbar  start-->
    <div class="p-0 bg-light rounded rounded-pill shadow-sm  text-center m-4">
-    <div class="input-group">
+    <!-- <div class="input-group">
       <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
       <div class="input-group-append">
         <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
       </div>
-    </div>
+    </div> -->
   </div>
     <!-- searchbar  end-->
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        
                         <ul class="nav navbar-nav ml-auto">
-                           
                             <li class="nav-item active">
                                 <a class="nav-link" href="#">
-                                    <!-- <i class="far fa-user-circle fa-2xl "></i> -->
                                     <i class="fas fa-bell fa-2xl "></i>
-                                </a>
-                               
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>
-                            <li class="nav-item">
-                                <span class="badge badge-pill badge-warning"style="float:"> 134</span>
-                                <a class="nav-link" href="/News/">News<span class="sr-only">(current)<m:-15px/span></a>
+                                </a>  
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="logout.php"> 

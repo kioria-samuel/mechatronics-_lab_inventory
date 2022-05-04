@@ -65,20 +65,15 @@ if(isset($_POST['save'])){
     }
       
     }
-
   }
-  //end of post check validation
-  
+  //end of post check validation 
 }
-
-
-
 ?>
 <!DOCTYE html>
 <html>
     <?php include('header.php');?>
       <!-- start of register form -->
-      <section class="container-fluid">
+      <section class="container-fluid ">
       <section class="row justify-content-left p-5">
         <section class="col-12 col-sm-6 col-md-4">
           <form class="form-container border-radius:20px" action="register.php" method="post">

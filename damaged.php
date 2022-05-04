@@ -3,7 +3,7 @@
 // establish a connecion to the database
 include ("config.php") ;
 //construct query
-$sql='SELECT  asset_no,condition_,status_  FROM borrow where condition_="okey"';
+$sql='SELECT  asset_no,condition_,status_  FROM borrow where condition_="damaged"';
 //make the query
 $result=mysqli_query($con,$sql);
 //fetch the results from the query as an array
@@ -25,15 +25,14 @@ mysqli_close($con);
                     <div class="col-lg-12 mx-auto">
                       <div class="card rounded shadow border-0">
                         <div class="card-body p-5 bg-success rounded">
-                        <h4 class="text-center font-weight-bold"> TRANSCATIONS HISTORY </h4>
+                        <h4 class="text-center font-weight-bold"> DAMAGED </h4>
                           <div class="table-responsive">
                             <table id="mytable" style="width:100%" class="table table-striped table-bordered">
                               <thead class="text-danger font-weight-bold">
                                 <tr>
-                                  <th>Asset no</th>
-                        
-                                  <th>Condition</th>
-                                  <th>Status</th>
+                                  <th>ASSET NO</th>
+                                  <th>CONDITION</th>
+                                  <th>STATUS</th>
                                 </tr>
                               </thead>
                               <tbody>

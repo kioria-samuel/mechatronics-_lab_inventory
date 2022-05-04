@@ -1,6 +1,23 @@
+
 </div>
+
 </div>
- <!-- jQuery CDN - Slim version (=without AJAX) -->
+<footer class="text-center text-white fixed-bottom" style="background-color: #21081a;">
+  <!-- Grid container -->
+  <!-- <div class="container p-4">
+  
+  </div> -->
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color:#090318;">
+    © 2022 Copyright:
+    <a class="text-white" href="#">mechactronics lab</a>
+    
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- jQuery CDN - Slim version (=without AJAX) -->
     
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
     <!-- Popper.JS -->
