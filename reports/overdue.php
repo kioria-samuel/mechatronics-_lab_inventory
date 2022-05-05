@@ -1,6 +1,6 @@
 <!DOCTYE html>
 <html>
-    <?php include('header.php');?>
+    <?php include('../basic_template/header.php');?>
  <!-- <nav class="navbar  bg-primary"> -->
  <div class="row py-6">
                     <div class="col-lg-12 mx-auto">
@@ -165,5 +165,5 @@
                     </div>
                   </div>
                 </div>
-    <?php include('footer.php');?>//include the ooter redundant code or every page
+    <?php include('../basic_template/footer.php');?>//include the ooter redundant code or every page
 </html>

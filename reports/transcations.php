@@ -1,7 +1,10 @@
 <?php
 
-// establish a connecion to the database
-include ("config.php") ;
+//check whether the user is logged in
+require_once('../powerscripts/logincheck.php');
+// Include config file
+require_once("../databaseconnection/config.php") ;
+
 //construct query
 $sql='SELECT  asset_no,tech_name,department,reg_no,borrow_date,period,return_date,condition_,status_  FROM borrow ';
 //make the query
@@ -20,11 +23,11 @@ mysqli_close($con);
 ?>
 <!DOCTYE html>
 <html>
-    <?php include('header.php');?>
+    <?php include('../basic_template/header.php');?>
     <div class="row py-6">
                     <div class="col-lg-12 mx-auto">
                       <div class="card rounded shadow border-0">
-                        <div class="card-body p-5 bg-success rounded">
+                        <div class="card-body p-5 bg-white rounded">
                         <h4 class="text-center font-weight-bold"> TRANSCATIONS HISTORY </h4>
                           <div class="table-responsive">
                             <table id="mytable" style="width:100%" class="table table-striped table-bordered">
@@ -68,5 +71,5 @@ mysqli_close($con);
                 </div>
               
 
-    <?php include('footer.php');?>
+    <?php include('../basic_template/footer.php');?>
 </html>

@@ -1,6 +1,8 @@
 <?php
+//check whether the user is logged in
+require_once('../powerscripts/logincheck.php');
 // Include config file
-require_once("config.php") ;
+require_once("../databaseconnection/config.php") ;
 $assetno=$status='';
 $assetname=$model='';
 //initialize error variables
@@ -142,7 +144,7 @@ if(isset($_POST['save'])){
 ?>
   <!DOCTYE html>
 <html>
-    <?php include('header.php');?>
+    <?php include('../basic_template/header.php');?>
    
       <!-- start of register form -->
       <section class="container-fluid">
@@ -229,5 +231,5 @@ if(isset($_POST['save'])){
    
 
     </section>
-    <?php include('footer.php');?>
+    <?php include('../basic_template/footer.php');?>
 </html>

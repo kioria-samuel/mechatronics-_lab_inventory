@@ -2,7 +2,7 @@
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
 // Include config file
-require_once "config.php";
+require_once "../databaseconnection/config.php";
 // We don't have the password or email info stored in sessions so instead we can get the results from the database.
 $stmt = $con->prepare('SELECT password, email FROM accounts WHERE id = ?');
 // In this case we can use the account ID to get the account info.
@@ -14,7 +14,7 @@ $stmt->close();
 ?>
 <!DOCTYPE html>
 <html>
-<?php include('header.php');?>
+<?php include('../basic_template/header.php');?>
 <div class="row py-6">
                     <div class="col-lg-12 mx-auto">
                       <div class="card rounded shadow border-0">
@@ -48,6 +48,6 @@ $stmt->close();
                   </div>
                 </div>
         
-<?php include('footer.php');?>
+<?php include('../basic_template/footer.php');?>
 
 </html>

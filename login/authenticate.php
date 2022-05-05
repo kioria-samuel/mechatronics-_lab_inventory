@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Include config file
-require_once "config.php";
+require_once ("../databaseconnection/config.php");
 $username_err = $password_err =$emai_err= $login_err = "";
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( !isset($_POST['username'], $_POST['password']) ) {
@@ -28,7 +28,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['username'];
             $_SESSION['id'] = $id;
-            header('Location: test.php');
+            header('Location:../test.php');
         } else {
             // Incorrect password
             echo 'Incorrect username and/or password!';

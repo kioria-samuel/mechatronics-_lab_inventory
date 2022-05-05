@@ -1,6 +1,9 @@
 <?php
+//check whether the user is logged in
+require_once('../powerscripts/logincheck.php');
 // Include config file
-require_once("config.php") ;
+require_once("../databaseconnection/config.php") ;
+
 //initialize error variables
 $assetno=$assetname=$model=$type='';
 $errors=array('assetno'=>'','assetname'=>'','model'=>'','type'=>'',);
@@ -71,7 +74,7 @@ if(isset($_POST['save'])){
 ?>
 <!DOCTYE html>
 <html>
-    <?php include('header.php');?>
+    <?php include('../basic_template/header.php');?>
       <!-- start of register form -->
       <section class="container-fluid ">
       <section class="row justify-content-left p-5">
@@ -115,7 +118,7 @@ if(isset($_POST['save'])){
 
               <!-- <button type="submit" class="btn btn-primary p-5">save</button>
               <button type="submit" class="btn btn-primary p">delete</button> -->
-              <button type="save" name="save" class="btn btn-success col-sm-3  "><i class="fa fa-floppy-o"></i>|save</button>
+              <button type="save" name="save" clalss="btn btn-success col-sm-3  "><i class="fa fa-floppy-o"></i>|save</button>
               <button type="add" class="btn btn-success col-sm-2  "><i class="fa fa-plus"></i>|add</button>
               <button type="scan" class="btn btn-success col-sm-3  "><i class="fa fa-trash"></i>|delete</button> 
             </div>
@@ -129,5 +132,5 @@ if(isset($_POST['save'])){
 
     </section>
 
-    <?php include('footer.php');?>
+    <?php include('../basic_template/footer.php');?>
 </html>

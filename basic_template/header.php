@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="style4.css">
+    <link rel="stylesheet" href="/css/style4.css">
 
     <!-- Font Awesome JS -->
     <script src="https://kit.fontawesome.com/cf3b94705e.js" crossorigin="anonymous"></script>
@@ -35,12 +35,12 @@
             <ul class="list-unstyled components">
                 
                 <li>
-                    <a href="test.php">
+                    <a href="../test.php">
                         <i class="fas fa-home"></i>
                         Home
                     </a>
                 <li>
-                    <a href="register.php">
+                    <a href="../forms/register.php">
                         <i class="fas fa-feather-alt"></i>
                         Register
                     </a>
@@ -51,7 +51,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="borrowmenu">
                         <li>
-                            <a href="borrow.php">Borrow</a>
+                            <a href="../forms/borrow.php">Borrow</a>
                         </li>
                         <li>
                             <a href="return.php">Return</a>
@@ -59,7 +59,7 @@
                        
                     </ul>
   
-                    <a href="identify.php">
+                    <a href="../forms/identify.php">
                         <!-- <i class="fa-solid fa-scanner-gun"></i> -->
                         <i class="fas fa-barcode"></i>
                        
@@ -72,24 +72,24 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="transcations.php">Transactions</a>
+                            <a href="../reports/transcations.php">Transactions</a>
                         </li>
                         <li>
-                            <a href="overdue.php">Overdue</a>
+                            <a href="../reports/overdue.php">Overdue</a>
                         </li>
                         <li>
                             <a href="#">Defaulters</a>
                         </li>
                         <li>
-                            <a href="Instock.php">Instock</a>
+                            <a href="../reports/instock.php">Instock</a>
                         </li>
                         <li>
-                            <a href="damaged.php">Damaged</a>
+                            <a href="../reports/damaged.php">Damaged</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="profile.php">
+                    <a href="../settings/profile.php">
                             <i class="fas fa-cog fa-spin"></i>
                         Settings
                     </a>
@@ -128,7 +128,7 @@
                                 </a>  
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="logout.php"> 
+                                <a class="nav-link" href="../powerscripts/logout.php"> 
                                     <i class="fas fa-sign-out-alt fa-2xl "></i></a>
                             </li>
                         </ul>

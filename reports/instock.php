@@ -1,7 +1,8 @@
 <?php
-
-// establish a connecion to the database
-include ("config.php") ;
+//check whether the user is logged in
+require_once('../powerscripts/logincheck.php');
+// Include config file
+require_once("../databaseconnection/config.php") ;
 //construct query
 $sql='SELECT id, asset_no,asset_name,model,type,created_at  FROM assets ORDER BY created_at';
 //make the query
@@ -21,7 +22,7 @@ mysqli_close($con);
 <!DOCTYE html>
 <html>
 
-    <?php include('header.php');?>
+    <?php include('../basic_template/header.php');?>
     <!-- <nav class="navbar  bg-primary"> -->
     <div class="row py-6">
                     <div class="col-lg-12 mx-auto">
@@ -64,5 +65,5 @@ mysqli_close($con);
                   </div>
                 </div>
          
-    <?php include('footer.php');?>//include the ooter redundant code or every page
+    <?php include('../basic_template/footer.php');?>//include the ooter redundant code or every page
 </html>

@@ -1,6 +1,8 @@
 <?php
+//check whether the user is logged in
+require_once('../powerscripts/logincheck.php');
 // Include config file
-require_once("config.php") ;
+require_once("../databaseconnection/config.php") ;
 $status=$condition=$assetno=$techname=$departm=$regno=$borrowd=$period=$returnd='';
 //grab the borrowed record 
 if(isset($_POST['submit'])){
@@ -67,7 +69,7 @@ if(isset($_POST['clear'])){
 ?>
 <!DOCTYE html>
 <html>
-    <?php include('header.php');?>
+    <?php include('../basic_template/header.php');?>
     <!-- start of register form -->
     <section class="container-fluid">
       <section class="row justify-content-left p-5">
@@ -167,5 +169,5 @@ if(isset($_POST['clear'])){
 
     </section>
 
-    <?php include('footer.php');?>
+    <?php include('../basic_template/footer.php');?>
 </html>

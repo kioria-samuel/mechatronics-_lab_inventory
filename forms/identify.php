@@ -1,6 +1,6 @@
 <?php
 // Include config file
-require_once("config.php") ;
+require_once("../databaseconnection/config.php") ;
 $assetno=$status='';
 $assetno=$assetname=$model='';
 if(isset($_POST['submit'])){
@@ -53,7 +53,7 @@ if(isset($_POST['submit'])){
 ?>
 <!DOCTYE html>
 <html>
-    <?php include('header.php');?> 
+    <?php include('../basic_template/header.php');?> 
     <!-- start of register form -->
     <section class="container-fluid">
       <section class="row justify-content-left p-5">
@@ -91,5 +91,5 @@ if(isset($_POST['submit'])){
         </section>
       </section>
     </section>
-    <?php include('footer.php');?>
+    <?php include('../basic_template/footer.php');?>
 </html>
