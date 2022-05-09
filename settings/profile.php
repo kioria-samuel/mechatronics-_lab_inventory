@@ -15,39 +15,103 @@ $stmt->close();
 <!DOCTYPE html>
 <html>
 <?php include('../basic_template/header.php');?>
-<div class="row py-6">
-                    <div class="col-lg-12 mx-auto">
+<div class="row  ">
+                    <div class="col-sm-5">
                       <div class="card rounded shadow border-0">
-                        <div class="card-body p-5 bg-white rounded">
-                          <div class="table-responsive">
-                            <table id="mytable" style="width:100%" class="table table-striped table-bordered">
-                              <thead>
-                              <tr>
-                              <td>account details</td>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr>
-                                  <td>username</td>
-                                  <td><?=$_SESSION['name']?></td>
-                                  </tr>
-                                  <tr>
-						                <td>Password:</td>
-						                <td><?=$password?></td>
-					                </tr>
-                                 <tr>
-						<td>Email:</td>
-						<td><?=$email?></td>
-					            </tr>
-                              </tbody>
-                            </table>
-                          </div>
+                        <div class="card-body  bg-dark rounded">
+                        <div class="card bg-dark">
+              
+          <h5 class="card-title text-success text-justify-centre">ACCOUNT DETAILS</h5>
+          <!-- <hr> -->
+          <h6 class="card-text text-primary">USERNAME:<?=$_SESSION['name']?></h6>
+          <h6 class="card-text text-primary">EMAIL   :<?=$email?></h6>
+          <a href="../reports/defaulters.php" class="btn btn-primary">Edit account details</a>
+        </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-        
+                  
+                
+          
+            <div class="col-sm-7">
+            <div class="card rounded shadow border-0">
+            <div class="card-body  bg-dark rounded">
+            <form action="borrow.php" method="POST" class="form-container border-radius:20px ">
+            <h5 class="text-center font-weight-bold text-success"> EDIT ACCOUNT DETAILS </h5>
+            <br>
+            
+            <div class="form-group row">
+              <label for="inputasset" class="col-sm-2 col-form-label text-primary">Username</label>
+              <div class="col-sm-5">
+                <input type="text"  value="" class="form-control" id="inputasset" placeholder="username">
+               
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputasset" class="col-sm-2 col-form-label text-primary">Email</label>
+              <div class="col-sm-5">
+                <input type="text"  value="" class="form-control" id="inputasset" placeholder="email">
+               
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputasset" class="col-sm-2 col-form-label text-primary">Pasword</label>
+              <div class="col-sm-5">
+                <input type="text"  value="" class="form-control" id="inputasset" placeholder="password">
+               
+              </div>
+            </div>
+            <button type="save" name="save" class="btn btn-success col-sm-3  "><i class="fa fa-floppy-o"></i>|save</button>
+            </form>
+
+             </div>
+             </div>
+            </div>
+          </div>      
+        <!-- stat o creator details -->
+        <div class="row">
+        <div class="col-sm-12">
+        <div class="card rounded shadow border-0">
+          <div class="card-body  bg-dark rounded">
+            <h5 class="card-text text-centre font-weight-bold text-success ">PROJECT CONTRIBUTORS</h5>
+            <div class="row">
+            <!-- proile photo -->
+            <div class="col-sm-5">
+            <div class="card rounded shadow border-0">
+          <div class="card-body text-centre bg-dark rounded">
+          <img src="" alt="profile image"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3 text-primary">Samuel Kioria</h5>
+            <p class="text-primary mb-1">Web Developer</p>
+            <p class="text-primary mb-4">Bay Area, San Francisco, CA</p>
+            <div class="d-flex justify-content-center mb-2">
+              <!-- <button type="button" class="btn btn-primary">Follow</button> -->
+              <button type="button" class="btn btn-outline-primary ms-1">Contact</button>
+            </div>
+          </div>
+          </div>
+            </div>
+            <!-- developer background -->
+            <div class="col-sm-5">
+            <div class="card rounded shadow border-0">
+          <div class="card-body text-centre  bg-dark rounded">
+          <img src="" alt="profile image"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3 text-primary">Samuel Kioria</h5>
+            <p class="text-primary mb-1">Web Developer,Mechatronics student</p>
+            <p class="text-primary mb-4">Dekut,Nyeri,Kenya</p>
+            <div class="d-flex justify-content-center mb-2">
+              <!-- <button type="button" class="btn btn-primary">Follow</button> -->
+              <button type="button" class="btn btn-outline-primary ms-1">Contact</button>
+            </div>
+          </div>
+          </div>
+            </div>
+            </div>
+          </div>
+         </div>
+        </div>
+        </div>
 <?php include('../basic_template/footer.php');?>
 
 </html>

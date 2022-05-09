@@ -1,12 +1,14 @@
 /* set entire body that is webpage */
 body{
-    background: #0A71CF;
-    /* background-image: url("https://www.freeimages.com/photo/green-leaves-1410259"); */
-    padding-top: 25vh;
+    /* background-image: url("../login/mechatronics.jpeg");
+    height: 100vh; */
+    /* background: #0A71CF; */
+   
+    /* padding-top: 25vh; */
     }
     /* set form background colour*/
     form{
-    background: #fff;
+    background: rgb(115, 89, 89);
     }
     /* set padding and size of th form */
     .form-container{

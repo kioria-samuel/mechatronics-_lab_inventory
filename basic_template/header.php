@@ -23,7 +23,7 @@
       rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="wrapper">
+<div class="wrapper ">
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header d-inline-block">
@@ -54,7 +54,7 @@
                             <a href="../forms/borrow.php">Borrow</a>
                         </li>
                         <li>
-                            <a href="return.php">Return</a>
+                            <a href="../forms/return.php">Return</a>
                         </li>
                        
                     </ul>
@@ -78,7 +78,7 @@
                             <a href="../reports/overdue.php">Overdue</a>
                         </li>
                         <li>
-                            <a href="#">Defaulters</a>
+                            <a href="../reports/defaulters.php">Defaulters</a>
                         </li>
                         <li>
                             <a href="../reports/instock.php">Instock</a>

@@ -44,4 +44,27 @@
     </script>
      <script src="/ECN/Ztools/CalendarControl/CalendarControl.js"
         language="javascript"></script>
+        <!-- reducing the deaulters report to 50 percent height -->
+  <script>
+          $(document).ready(function () {
+  $('#mytablet').DataTable({
+    "scrollY": "50vh",
+    "scrollCollapse": true,
+  });
+  $('.dataTables_length').addClass('bs-select');
+});
+        </script>
+        <!-- script or printing tables  -->
+        <script>
+          function printTable() {
+	var el=document.getElementById("mytablet");
+	el.setAttribute('border', '1px');
+	el.setAttribute('cellpadding', '5');
+	newPrint=window.open("");
+	newPrint.document.write(el.outerHTML);
+	newPrint.print();
+	newPrint.close();
+}
+        </script>
+
 </body>

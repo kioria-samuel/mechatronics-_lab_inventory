@@ -1,0 +1,12 @@
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 10px;
+}
+ul {
+list-style-type:decimal-leading-zero;
+}
+ol{
+    list-style-type: lower-roman;
+}
