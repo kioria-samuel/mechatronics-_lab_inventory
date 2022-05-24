@@ -26,9 +26,12 @@
 <div class="wrapper ">
         <!-- Sidebar  -->
         <nav id="sidebar">
-            <div class="sidebar-header d-inline-block">
-                
-                <h3><i class="fas fa-pallet fa-50x"></i>Mechatronics </h3>
+            <div class="sidebar-header d-block">
+            <i class="far fa-clipboard fa-3x"></i>
+            <!-- <i class="fas fa-books-medical"></i> -->
+            <!-- <i class="fa-solid fa-books-medical"></i> -->
+            <!-- <i class="fas fa-pallet fa-3x text-centre"></i> -->
+                <h3 class="text-centre">Mechatronics Inventory </h3>
                 <strong>MLI</strong>
             </div>
 
@@ -122,11 +125,21 @@
     <!-- searchbar  end-->
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
+                            <!-- <li class="nav-item active">
                                 <a class="nav-link" href="#">
                                     <i class="fas fa-bell fa-2xl "></i>
-                                </a>  
-                            </li>
+                                </a> 
+
+                            </li> -->
+                            <div class="dropdown mydropdowncss">
+	<a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Dropdown Menu <span class="caret"></span></a> 
+    <ul class="dropdown-menu">
+    	<li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Gallery</a></li>
+    </ul>
+</div>
                             <li class="nav-item">
                                 <a class="nav-link" href="../powerscripts/logout.php"> 
                                     <i class="fas fa-sign-out-alt fa-2xl "></i></a>

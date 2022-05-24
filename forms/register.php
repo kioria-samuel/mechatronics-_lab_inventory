@@ -5,7 +5,7 @@ require_once('../powerscripts/logincheck.php');
 require_once("../databaseconnection/config.php") ;
 
 //initialize error variables
-$assetno=$assetname=$model=$type='';
+$assetno=$assetname=$model=$status=$type='';
 $errors=array('assetno'=>'','assetname'=>'','model'=>'','type'=>'',);
 //check if the data is sent by the post method to the server
 if(isset($_POST['save'])){
@@ -62,7 +62,8 @@ if(isset($_POST['save'])){
      
       //SAVE TO DB AND CHECK
     if(mysqli_query($con, $sql)){
-      header('location:register.php');
+      $status="assset saved";
+      //header('location:register.php');
     }else{
       echo 'query error:'.mysqli_error($conn);
     }
@@ -86,7 +87,9 @@ if(isset($_POST['save'])){
               <div class="col-sm-10">
                 <input type="text" class="form-control" name ="assetno" value="<?php echo htmlspecialchars( $assetno) ?>" id="scannedbarcode" placeholder="input_from_scanner">
                 <div class="text-danger"><?php echo $errors['assetno'];?></div>
+                <div class="text-danger"><?php echo $status;?></div>
               </div>
+              
             </div>
             <div class="form-group row">
               <label for="inputasset" class="col-sm-2 col-form-label">Asset</label>

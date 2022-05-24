@@ -55,10 +55,10 @@ if(isset($_POST['submit'])){
 <html>
     <?php include('../basic_template/header.php');?> 
     <!-- start of register form -->
-    <section class="container-fluid">
-      <section class="row justify-content-left p-5">
-        <section class="col-12 col-sm-6 col-md-4">
-          <form   class="form-container border-radius:20px " action="identify.php" method="post">
+    <div class=" justify-content-center align-items-center container">
+      <section class="row  p-5">
+        <section class="col-12 col-sm-6 col-md-4  ">
+          <form   class="form-container  border-radius:20px " action="identify.php" method="post">
             <h4 class="text-center font-weight-bold"> IDENTIFY ASSET </h4>
             <div class="form-group row">
               <button type="submit" name="submit" class="btn btn-success col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
@@ -90,6 +90,6 @@ if(isset($_POST['submit'])){
           </form>
         </section>
       </section>
-    </section>
+</div>
     <?php include('../basic_template/footer.php');?>
 </html>

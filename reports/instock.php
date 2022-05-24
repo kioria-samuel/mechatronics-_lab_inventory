@@ -28,16 +28,18 @@ mysqli_close($con);
                     <div class="col-lg-12 mx-auto">
                       <div class="card rounded shadow border-0">
                         <div class="card-body p-5 bg-white rounded">
+                        <h4 class="text-center font-weight-bold"><u>INSTOCK REPORT</u> </h4>
+                        <hr>
                           <div class="table-responsive">
                             <table id="mytable" style="width:100%" class="table table-striped table-bordered">
-                              <thead>
+                              <thead  class="text-primary font-weight-bold">
                                 <tr>
-                                  <th>id</th>
-                                  <th>Asset no</th>
-                                  <th>Asset</th>
-                                  <th>Model</th>
-                                  <th>type</th>
-                                  <th>created_at</th>
+                                  <th>ID</th>
+                                  <th>ASSET NO</th>
+                                  <th>ASSET</th>
+                                  <th>MODEL</th>
+                                  <th>TYPE</th>
+                                  <th>CREATED_AT</th>
                                  
                                 </tr>
                               </thead>

@@ -32,12 +32,16 @@
             });
         });
     </script>
-    <!-- autofill date for the date input field
+    <!-- autofill date for the date input field -->
  <script type="text/javascript">
-      document.getElementById('date').value = Date();
+   const return_date = new Date()
+
+// add 1 day to today
+return_date.setDate(new Date().getDate() + 7)
+      document.getElementById('date').value = return_date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"numeric", day:"numeric"}) ;
     </script>
-    <!-- document ready function for sorting out table records -->
-    <script > -->
+     <!-- document ready function for sorting out table records -->
+    <script >
   $(document).ready(function() {
     $("#mytable").dataTable();
 } );
@@ -66,5 +70,16 @@
 	newPrint.close();
 }
         </script>
+        <!-- showin account details on hover -->
+        <script>
+$(function(){
+    $('.mydropdownjQuery').hover(function() {
+        $(this).addClass('open');
+    },
+    function() {
+        $(this).removeClass('open');
+    });
+});
+</script>
 
 </body>

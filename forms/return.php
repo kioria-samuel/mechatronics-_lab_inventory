@@ -8,7 +8,7 @@ $status=$condition=$assetno=$techname=$departm=$regno=$borrowd=$period=$returnd=
 if(isset($_POST['submit'])){
   // echo 'there is something';
    // Prepare a select statement where status is null
-   $sql = "SELECT asset_no,tech_name,department,reg_no,borrow_date,period,return_date FROM borrow WHERE asset_no =? AND status_ IS NULL";
+   $sql = "SELECT asset_no,tech_name,department,reg_no,borrow_date,period,return_date FROM borrow WHERE asset_no =? AND status_='borrowed'";
           
    if($stmt = mysqli_prepare($con, $sql)){
        // Bind variables to the prepared statement as parameters
@@ -56,7 +56,7 @@ if(isset($_POST['clear'])){
   $assetno=$_POST['assetno'];
   $condition=$_POST['cond'];
    // Prepare an update statement
- $sql = "UPDATE borrow SET condition_=?,status_=?  WHERE asset_no=?";
+ $sql = "UPDATE borrow SET condition_=?,status_=?  WHERE asset_no=? AND status_='borrowed'";
  if ($stmt = mysqli_prepare($con,$sql)){
   mysqli_stmt_bind_param($stmt, "ssi", $condition, $status, $assetno);
   mysqli_stmt_execute($stmt);

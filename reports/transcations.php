@@ -28,20 +28,21 @@ mysqli_close($con);
                     <div class="col-lg-12 mx-auto">
                       <div class="card rounded shadow border-0">
                         <div class="card-body p-5 bg-white rounded">
-                        <h4 class="text-center font-weight-bold"> TRANSCATIONS HISTORY </h4>
+                        <h4 class="text-center font-weight-bold"><u>TRANSCATIONS HISTORY REPORT</u> </h4>
+                        <hr>
                           <div class="table-responsive">
                             <table id="mytable" style="width:100%" class="table table-striped table-bordered">
-                              <thead class="text-danger font-weight-bold">
+                              <thead class="text-primary font-weight-bold">
                                 <tr>
-                                  <th>Asset no</th>
-                                  <th>Tech name</th>
-                                  <th>Department</th>
-                                  <th>Reg No</th>
-                                  <th> Borrow date</th>
-                                  <th>Period</th>
-                                  <th>Return date</th>
-                                  <th>Condition</th>
-                                  <th>Status</th>
+                                  <th>ASSET NO</th>
+                                  <th>TECH NAME</th>
+                                  <th>DEPARTMENT </th>
+                                  <th>REG NO</th>
+                                  <th> BORROW DATE</th>
+                                  <th>PERIOD</th>
+                                  <th>RETURN DATE</th>
+                                  <th>CONDITION</th>
+                                  <th>STATUS</th>
                                 </tr>
                               </thead>
                               <tbody>

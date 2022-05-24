@@ -1,6 +1,20 @@
 <?php
+//intializing the count variables
+$damaged_count=$borrowed_count=$defaulters_count=$instock_cons_count=$instock_fixed_count=$defaulters=$borrowed='';
+//include the connection file 
+require('databaseconnection/config.php');
 //check whether the user is logged in
 require_once('powerscripts/logincheck.php');
+//include thec ocunt unction
+require_once('powerscripts/count_check.php');
+//include the defaulters query report
+require('powerscripts/defaulters.php');
+
+$damaged_count=count_items("damaged");
+ $instock_cons_count=count_items_borrow("consumable");
+ $instock_fixed_count=count_items_borrow("fixed");
+ $borrowed=count_items("borrowed");
+ $defaulters=count_items("Uncleared");
 ?>
 <!DOCTYE html>
 <html>
@@ -13,200 +27,36 @@ require_once('powerscripts/logincheck.php');
  <div class="table-responsive bg-white">
  <button class="btn btn-success" onclick="printTable();"><span class="glyphicon glyphicon-print"></span> Print</button>
                             <table id="mytablet" style="width:100%" class="table table-striped table-bordered table-white">
-                              <thead>
+                              <thead class="text-primary font-weight-bold">
                                 <tr>
                                   <th>Asset No</th>
                                   <th>Asset</th>
                                   <th>Name</th>
                                   <th>Reg No</th>
-                                  <th> Date</th>
-                                  <th>Contact</th>
+                                  <!-- <th> Date</th>
+                                  <th>Contact</th> -->
                                 </tr>
                               </thead>
                               <tbody>
                                 
-                                <tr>
-                                  <td>ASSET NO</td>
-                                  <td>Asset</td>
-                                  <td>Name</td>
-                                  <td>Reg No</td>
-                                  <td>Date</td>
-                                  <td>Contact</td>
+                              <?php foreach($borrows as $borrow){?>
+                                  <tr>
+                                  <td><?php echo htmlspecialchars($borrow['asset_no']);?></td>
+                                 
+                                  <td><?php echo htmlspecialchars($borrow['reg_no']);?></td>
+                                  <td><?php echo htmlspecialchars($borrow['condition_']);?></td>
+                                  <td><?php echo htmlspecialchars($borrow['status_']);?></td>
+                                 
                                 </tr>
-                                <tr>
-                                  <td>3456767</td>
-                                  <td>arduino uno</td>
-                                  <td>chwasi asa</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2011/07/25</td>
-                                  <td>0117867678</td>
-                                </tr>
-                                <tr>
-                                  <td>345679</td>
-                                  <td>multimeter</td>
-                                  <td>kijana mtiifu</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2021/04/25</td>
-                                  <td>011785678</td>
-                                </tr>
-                                <tr>
-                                  <td>3456767</td>
-                                  <td>arduino uno</td>
-                                  <td>chwasi asa</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2011/07/25</td>
-                                  <td>0117867678</td>
-                                </tr>
-                               
-                                <tr>
-                                  <td>345679</td>
-                                  <td>multimeter</td>
-                                  <td>kijana mtiifu</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2021/04/25</td>
-                                  <td>011785678</td>
-                                </tr>
-                                <tr>
-                                  <td>3456767</td>
-                                  <td>arduino uno</td>
-                                  <td>chwasi asa</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2011/07/25</td>
-                                  <td>0117867678</td>
-                                </tr>
-                               
-                                <tr>
-                                  <td>345679</td>
-                                  <td>multimeter</td>
-                                  <td>kijana mtiifu</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2021/04/25</td>
-                                  <td>011785678</td>
-                                </tr>
-                                <tr>
-                                  <td>3456767</td>
-                                  <td>arduino uno</td>
-                                  <td>chwasi asa</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2011/07/25</td>
-                                  <td>0117867678</td>
-                                </tr>
-                               
-                                <tr>
-                                  <td>345679</td>
-                                  <td>multimeter</td>
-                                  <td>kijana mtiifu</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2021/04/25</td>
-                                  <td>011785678</td>
-                                </tr>
-                                <tr>
-                                  <td>3456767</td>
-                                  <td>arduino uno</td>
-                                  <td>chwasi asa</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2011/07/25</td>
-                                  <td>0117867678</td>
-                                </tr>
-                               
-                                <tr>
-                                  <td>345679</td>
-                                  <td>multimeter</td>
-                                  <td>kijana mtiifu</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2021/04/25</td>
-                                  <td>011785678</td>
-                                </tr>
-                                <tr>
-                                  <td>3456767</td>
-                                  <td>arduino uno</td>
-                                  <td>chwasi asa</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2011/07/25</td>
-                                  <td>0117867678</td>
-                                </tr>
-                               
-                                <tr>
-                                  <td>345679</td>
-                                  <td>multimeter</td>
-                                  <td>kijana mtiifu</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2021/04/25</td>
-                                  <td>011785678</td>
-                                </tr>
-                                <tr>
-                                  <td>3456767</td>
-                                  <td>arduino uno</td>
-                                  <td>chwasi asa</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2011/07/25</td>
-                                  <td>0117867678</td>
-                                </tr>
-                               
-                                <tr>
-                                  <td>345679</td>
-                                  <td>multimeter</td>
-                                  <td>kijana mtiifu</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2021/04/25</td>
-                                  <td>011785678</td>
-                                </tr>
-                                <tr>
-                                  <td>3456767</td>
-                                  <td>arduino uno</td>
-                                  <td>chwasi asa</td>
-                                  <td>E022-01-xxx/2019</td>
-                                  <td>2011/07/25</td>
-                                  <td>0117867678</td>
-                                </tr>
+                                <?php
+                                }
+                                ?>             
                                
                                
                                
                               </tbody>
                             </table>
- <!-- <div class="table-responsive">
-   <table class="table table-dark">
-     <thead>
-       <tr>
-         <th scope="col">#</th>
-         <th scope="col">First</th>
-         <th scope="col">Last</th>
-         <th scope="col">Position</th>
-       </tr>
-     </thead>
-     <tbody>
-       <tr>
-         <th scope="row">1</th>
-         <td>Mark</td>
-         <td>Otto</td>
-         <td>Project Manager</td>
-       </tr>
-       <tr>
-         <th scope="row">2</th>
-         <td>Jacob</td>
-         <td>Thornton</td>
-         <td>JS developer</td>
-       </tr>
-       <tr>
-         <th scope="row">3</th>
-         <td>Larry</td>
-         <td>Bird</td>
-         <td>Back-end developer</td>
-       </tr>
-       <tr>
-         <th scope="row">4</th>
-         <td>Martin</td>
-         <td>Smith</td>
-         <td>Back-end developer</td>
-       </tr>
-       <tr>
-         <th scope="row">5</th>
-         <td>Kate</td>
-         <td>Mayers</td>
-         <td>Scrum master</td>
-       </tr>
-     </tbody>
-   </table>-->
+
  </div> 
 <!-- start o cards  -->
 <h3 class="text-white ">STATISTICS</h3>
@@ -218,7 +68,7 @@ require_once('powerscripts/logincheck.php');
         <div class="card-body bg-white">
           <h5 class="card-title text-warning">Damaged</h5>
           <hr>
-          <h6 class="card-text">Total:</h6>
+          <h6 class="card-text">Total:<?php echo $damaged_count ?></h6>
           <!-- <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p> -->
           <a href="../reports/damaged.php" class="btn btn-primary">view in detail</a>
         </div>
@@ -230,7 +80,7 @@ require_once('powerscripts/logincheck.php');
         <div class="card-body bg-white">
           <h5 class="card-title text-warning">Borrowed</h5>
           <hr>
-          <h6 class="card-text">Total:</h6>
+          <h6 class="card-text">Total:<?php echo $borrowed ?></h6>
           <!-- <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p> -->
           <a href="../reports/transcations.php" class="btn btn-primary">view in detail</a>
         </div>
@@ -243,7 +93,7 @@ require_once('powerscripts/logincheck.php');
         <div class="card-body bg-white">
           <h5 class="card-title text-warning">Defaulters</h5>
           <hr>
-          <h6 class="card-text">Total:</h6>
+          <h6 class="card-text">Total:<?php echo $defaulters ?></h6>
           <!-- <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p> -->
           <a href="../reports/defaulters.php" class="btn btn-primary">view in detail</a>
         </div>
@@ -254,9 +104,21 @@ require_once('powerscripts/logincheck.php');
     <div class="col-sm-2">
       <div class="card">
         <div class="card-body bg-white">
-          <h5 class="card-title text-warning">Instock</h5>
+          <h5 class="card-title text-warning">Consumables</h5>
           <hr>
-          <h6 class="card-text">Total:</h6>
+          <h6 class="card-text">Total:<?php echo $instock_cons_count ?></h6>
+          <!-- <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p> -->
+          <a href="../reports/instock.php" class="btn btn-primary">view in detail</a>
+        </div>
+      </div>
+    </div>
+    <!-- start o ixed count_items -->
+    <div class="col-sm-2">
+      <div class="card">
+        <div class="card-body bg-white">
+          <h5 class="card-title text-warning">Fixed</h5>
+          <hr>
+          <h6 class="card-text">Total:<?php echo $instock_fixed_count ?></h6>
           <!-- <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p> -->
           <a href="../reports/instock.php" class="btn btn-primary">view in detail</a>
         </div>

@@ -83,6 +83,7 @@ span {
 
 #sidebar.active .sidebar-header strong {
     display: block;
+    text-align: left;
 }
 
 #sidebar ul li a {
@@ -203,7 +204,10 @@ a.article:hover {
     min-height: 100vh;
     transition: all 0.3s;
 }
-
+.mydropdowncss:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; 
+ }
 
 /* ---------------------------------------------------
     MEDIAQUERIES

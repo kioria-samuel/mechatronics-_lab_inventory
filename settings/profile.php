@@ -79,11 +79,11 @@ $stmt->close();
             <div class="col-sm-5">
             <div class="card rounded shadow border-0">
           <div class="card-body text-centre bg-dark rounded">
-          <img src="" alt="profile image"
+          <img src="kioria_.jpeg" alt="profile image"
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3 text-primary">Samuel Kioria</h5>
-            <p class="text-primary mb-1">Web Developer</p>
-            <p class="text-primary mb-4">Bay Area, San Francisco, CA</p>
+            <p class="text-primary mb-1">Web Developer,Mechatronics student</p>
+            <p class="text-primary mb-4">Dekut,Nyeri,Kenya</p>
             <div class="d-flex justify-content-center mb-2">
               <!-- <button type="button" class="btn btn-primary">Follow</button> -->
               <button type="button" class="btn btn-outline-primary ms-1">Contact</button>
@@ -95,10 +95,10 @@ $stmt->close();
             <div class="col-sm-5">
             <div class="card rounded shadow border-0">
           <div class="card-body text-centre  bg-dark rounded">
-          <img src="" alt="profile image"
+          <img src="nyaga.jfif" alt="profile image"
               class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3 text-primary">Samuel Kioria</h5>
-            <p class="text-primary mb-1">Web Developer,Mechatronics student</p>
+            <h5 class="my-3 text-primary">Peterson Nyaga</h5>
+            <p class="text-primary mb-1">Chief Technologist,Mechatronics Lab</p>
             <p class="text-primary mb-4">Dekut,Nyeri,Kenya</p>
             <div class="d-flex justify-content-center mb-2">
               <!-- <button type="button" class="btn btn-primary">Follow</button> -->

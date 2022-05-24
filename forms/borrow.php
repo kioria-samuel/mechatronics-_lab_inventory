@@ -3,7 +3,7 @@
 require_once('../powerscripts/logincheck.php');
 // Include config file
 require_once("../databaseconnection/config.php") ;
-$assetno=$status='';
+$assetno=$status=$num='';
 $assetname=$model='';
 //initialize error variables
 $assetno=$assetname=$model=$type=$techname=$departm=$regno=$period=$returnd='';
@@ -24,11 +24,12 @@ if(isset($_POST['submit'])){
      if(mysqli_stmt_execute($stmt)){
          /* store result */
          mysqli_stmt_store_result($stmt);
-         
-         if(mysqli_stmt_num_rows($stmt)  >0){
+         $num=mysqli_stmt_num_rows($stmt);//get the count 
+         if($num >0){
           // $bind=mysqli_stmt_bind_result($stmt,$assetno,$assetname,$model);
           // $result=mysqli_fetch_row($bind);
           // print_r($result);
+          
           $stmt->bind_result($assetno,$assetname);
           $stmt->fetch();
           // print_r($assetno);
@@ -120,8 +121,9 @@ if(isset($_POST['save'])){
       $regno=mysqli_real_escape_string($con,$_POST['regno']);
       $period=mysqli_real_escape_string($con,$_POST['period']);
       $returnd=mysqli_real_escape_string($con,$_POST['returnd']);
+      $status="borrowed";
       //create a variable sql
-      $sql="INSERT INTO borrow(asset_no,tech_name,department,reg_no,period,return_date)VALUES('$assetno','$techname', '$departm','$regno','$period','$returnd')";
+      $sql="INSERT INTO borrow(asset_no,tech_name,department,reg_no,period,return_date,status_)VALUES('$assetno','$techname', '$departm','$regno','$period','$returnd','$status')";
      
       //SAVE TO DB AND CHECK
     if(mysqli_query($con, $sql)){
@@ -158,6 +160,7 @@ if(isset($_POST['save'])){
                 <input type="text" name="assetno" class="form-control" value="<?php echo $assetno?>" id="scannedbarcode" placeholder="input_from_scanner">
                 <div class="text-danger"><?php echo $status;?></div>
                 <div class="text-danger"><?php echo $errors['assetno'];?></div>
+                <!-- <div class="text-danger"><?php echo $num;?></div> -->
               </div>
             </div>
             <div class="form-group row">
@@ -207,7 +210,7 @@ if(isset($_POST['save'])){
             <div class="form-group row">
               <label for="inputtechname" class="col-sm-2 col-form-label">Return date</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" value="<?php echo htmlspecialchars($returnd)?>"  name="returnd" id="inputtechanme" placeholder="return_date">
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($returnd)?>"  name="returnd" id="date" placeholder="return_date">
                 <div class="text-danger"><?php echo $errors['returnd'];?></div>
               </div>
             </div>
