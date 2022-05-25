@@ -11,7 +11,7 @@
 
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color:#090318;">
-    © 2022 Copyright:
+    © <?php echo date("Y")?> Copyright:
     <a class="text-white" href="#">mechactronics lab</a>
     
   </div>
@@ -33,13 +33,13 @@
         });
     </script>
     <!-- autofill date for the date input field -->
- <script type="text/javascript">
+ <!-- <script type="text/javascript">
    const return_date = new Date()
 
 // add 1 day to today
 return_date.setDate(new Date().getDate() + 7)
       document.getElementById('date').value = return_date.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"numeric", day:"numeric"}) ;
-    </script>
+    </script> -->
      <!-- document ready function for sorting out table records -->
     <script >
   $(document).ready(function() {
@@ -71,7 +71,7 @@ return_date.setDate(new Date().getDate() + 7)
 }
         </script>
         <!-- showin account details on hover -->
-        <script>
+        <!-- <script>
 $(function(){
     $('.mydropdownjQuery').hover(function() {
         $(this).addClass('open');
@@ -80,6 +80,6 @@ $(function(){
         $(this).removeClass('open');
     });
 });
-</script>
+</script> -->
 
 </body>

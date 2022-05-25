@@ -9,6 +9,8 @@ require_once('powerscripts/logincheck.php');
 require_once('powerscripts/count_check.php');
 //include the defaulters query report
 require('powerscripts/defaulters.php');
+//include the overdue_checker query
+require('powerscripts/overdue_checker.php');
 
 $damaged_count=count_items("damaged");
  $instock_cons_count=count_items_borrow("consumable");
@@ -30,9 +32,9 @@ $damaged_count=count_items("damaged");
                               <thead class="text-primary font-weight-bold">
                                 <tr>
                                   <th>Asset No</th>
-                                  <th>Asset</th>
-                                  <th>Name</th>
                                   <th>Reg No</th>
+                                  <th>Condition</th>
+                                  <th>Status</th>
                                   <!-- <th> Date</th>
                                   <th>Contact</th> -->
                                 </tr>

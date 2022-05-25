@@ -131,15 +131,19 @@
                                 </a> 
 
                             </li> -->
+                            <li class="nav-item">
                             <div class="dropdown mydropdowncss">
-	<a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Dropdown Menu <span class="caret"></span></a> 
-    <ul class="dropdown-menu">
-    	<li><a href="#">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Gallery</a></li>
-    </ul>
-</div>
+                            <a href="#" class=" dropdown-toggle text-dark" data-toggle="dropdown"><i class="fas fa-bell fa-2xl  "></i> <span class="caret"></span></a> 
+                            <ul class="dropdown-menu bg-secondary text-light  ">
+                            <li>LOGGED IN AS;</li>
+                                <li>Name:<?php echo $_SESSION['name']?></li>
+                                <li>Log id:<?php echo  $_SESSION['id']?> </li>
+                                <!-- <li><a href="#">Contact</a></li>
+                                <li><a href="#">Gallery</a></li> -->
+                            </ul>
+                             </div>      
+                            </li>
+                           
                             <li class="nav-item">
                                 <a class="nav-link" href="../powerscripts/logout.php"> 
                                     <i class="fas fa-sign-out-alt fa-2xl "></i></a>

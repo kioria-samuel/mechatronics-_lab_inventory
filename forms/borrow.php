@@ -3,6 +3,7 @@
 require_once('../powerscripts/logincheck.php');
 // Include config file
 require_once("../databaseconnection/config.php") ;
+require("../powerscripts/date_calculator.php");
 $assetno=$status=$num='';
 $assetname=$model='';
 //initialize error variables
@@ -104,14 +105,14 @@ if(isset($_POST['save'])){
     }
   }
    //check type
-  if (empty($_POST['returnd'])){
-    $errors['returnd'] = 'return date required!';
-  }else{
-    $returnd=$_POST['returnd'];
-    if(!preg_match('/^[a-zA-Z0-9]+$/', $returnd) == 0){
-      $errors['returnd'] ='type invalid!';
-    }
-  }
+  // if (empty($_POST['returnd'])){
+  //   $errors['returnd'] = 'return date required!';
+  // }else{
+  //   $returnd=$_POST['returnd'];
+  //   if(!preg_match('/^[a-zA-Z0-9]+$/', $returnd) == 0){
+  //     $errors['returnd'] ='type invalid!';
+  //   }
+  // }
     if(array_filter($errors)){
 
     }else{
@@ -120,8 +121,9 @@ if(isset($_POST['save'])){
       $departm=mysqli_real_escape_string($con,$_POST['departm']);
       $regno=mysqli_real_escape_string($con,$_POST['regno']);
       $period=mysqli_real_escape_string($con,$_POST['period']);
-      $returnd=mysqli_real_escape_string($con,$_POST['returnd']);
+     // $returnd=mysqli_real_escape_string($con,$_POST['returnd']);
       $status="borrowed";
+      $returnd=return_date($period);//call the date function to calcuate return date
       //create a variable sql
       $sql="INSERT INTO borrow(asset_no,tech_name,department,reg_no,period,return_date,status_)VALUES('$assetno','$techname', '$departm','$regno','$period','$returnd','$status')";
      
@@ -173,8 +175,8 @@ if(isset($_POST['save'])){
             <div class="form-group row">
               <label for="inputtechname" class="col-sm-2 col-form-label">Tech Name</label>
               <div class="col-sm-10">
-                <input type="text" name="techname"value="<?php echo htmlspecialchars($techname)?>" class="form-control" id="inputtechanme" placeholder="inputtechname">
-                <div class="text-danger"><?php echo $errors['techname'];?></div>
+                <input type="text" name="techname"value="<?php echo htmlspecialchars($_SESSION['name'])?>" class="form-control" id="inputtechanme" placeholder="inputtechname">
+                <!-- <div class="text-danger">/ </div> -->
               </div>
             </div>
             
@@ -202,18 +204,25 @@ if(isset($_POST['save'])){
             <div class="form-group row">
               <label for="inputtechname" class="col-sm-2 col-form-label">Period</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" value="<?php echo htmlspecialchars($period)?>" name="period" id="inputtechanme" placeholder="return_date">
+              <select class="form-control" id="typeselect" value="<?php echo htmlspecialchars($period)?>" name="period">
+                  <option>short_term</option>
+                  <option>long_term</option>
+                  <option>Project</option>
+                 
+                
+                </select>
+               
                 <div class="text-danger"><?php echo $errors['period'];?></div>
               </div>
               
             </div>
-            <div class="form-group row">
+            <!-- <div class="form-group row">
               <label for="inputtechname" class="col-sm-2 col-form-label">Return date</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" value="<?php echo htmlspecialchars($returnd)?>"  name="returnd" id="date" placeholder="return_date">
                 <div class="text-danger"><?php echo $errors['returnd'];?></div>
               </div>
-            </div>
+            </div> -->
             
             <div class="form-inline-block">
 
