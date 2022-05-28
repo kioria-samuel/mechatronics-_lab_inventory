@@ -3,7 +3,7 @@
 
 
 //construct query
-$sql='SELECT  asset_no,reg_no,condition_,status_  FROM borrow where status_="Uncleared"';
+$sql='SELECT  asset_no,reg_no,condition_,status_,contact,email  FROM borrow where status_="Uncleared" OR status_="overdue"';
 //make the query
 $result=mysqli_query($con,$sql);
 //counting of records with damaged items

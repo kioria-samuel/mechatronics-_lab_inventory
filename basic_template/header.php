@@ -77,12 +77,12 @@
                         <li>
                             <a href="../reports/transcations.php">Transactions</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="../reports/overdue.php">Overdue</a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href="../reports/defaulters.php">Defaulters</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="../reports/instock.php">Instock</a>
                         </li>

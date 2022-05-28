@@ -1,4 +1,5 @@
 <?php
+
 //intializing the count variables
 $damaged_count=$borrowed_count=$defaulters_count=$instock_cons_count=$instock_fixed_count=$defaulters=$borrowed='';
 //include the connection file 
@@ -12,11 +13,11 @@ require('powerscripts/defaulters.php');
 //include the overdue_checker query
 require('powerscripts/overdue_checker.php');
 
-$damaged_count=count_items("damaged");
+$damaged_count=count_items_damaged();
  $instock_cons_count=count_items_borrow("consumable");
  $instock_fixed_count=count_items_borrow("fixed");
- $borrowed=count_items("borrowed");
- $defaulters=count_items("Uncleared");
+ $borrowed=count_items_borrowed();
+ $defaulters=count_items_defaulters();
 ?>
 <!DOCTYE html>
 <html>
@@ -35,6 +36,9 @@ $damaged_count=count_items("damaged");
                                   <th>Reg No</th>
                                   <th>Condition</th>
                                   <th>Status</th>
+                                  <th>Contact</th>
+                                  <th>Email</th>
+                                  <th>Asset</th>
                                   <!-- <th> Date</th>
                                   <th>Contact</th> -->
                                 </tr>
@@ -43,12 +47,15 @@ $damaged_count=count_items("damaged");
                                 
                               <?php foreach($borrows as $borrow){?>
                                   <tr>
+                                   <?php $asse=getassetname($borrow['asset_no']);?>//ge the name o assets rom assets table
                                   <td><?php echo htmlspecialchars($borrow['asset_no']);?></td>
                                  
                                   <td><?php echo htmlspecialchars($borrow['reg_no']);?></td>
                                   <td><?php echo htmlspecialchars($borrow['condition_']);?></td>
                                   <td><?php echo htmlspecialchars($borrow['status_']);?></td>
-                                 
+                                  <td><?php echo htmlspecialchars($borrow['contact']);?></td>
+                                  <td><?php echo htmlspecialchars($borrow['email']);?></td>
+                                  <td><?php echo htmlspecialchars($asse);?></td>
                                 </tr>
                                 <?php
                                 }

@@ -8,7 +8,7 @@ $assetno=$status=$num='';
 $assetname=$model='';
 //initialize error variables
 $assetno=$assetname=$model=$type=$techname=$departm=$regno=$period=$returnd='';
-$errors=array('assetno'=>'','techname'=>'','departm'=>'','regno'=>'','period'=>'','returnd'=>'');
+$errors=array('assetno'=>'','techname'=>'','departm'=>'','regno'=>'','period'=>'','returnd'=>'','contact'=>'','email'=>'');
 if(isset($_POST['submit'])){
 // echo 'there is something';
  // Prepare a select statement
@@ -95,6 +95,27 @@ if(isset($_POST['save'])){
       $errors['regno'] ='type invalid!';
     }
   }
+  //check contact
+    
+    if (empty($_POST['contact'])){
+      $errors['contact'] = 'contact required!';
+    }else{
+      $contact=$_POST['contact'];
+      if(!preg_match('/^[a-zA-Z0-9]+$/', $contact) === 0){
+        $errors['contact'] ='contact invalid!';
+      }
+    }
+     //validate email
+    
+     if (empty($_POST['email'])){
+      $errors['email'] = 'email required!';
+    }else{
+      $email=$_POST['email'];
+      if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $errors['email'] =' invalid email!';
+      }
+    }
+    
     //check period
   if (empty($_POST['period'])){
     $errors['period'] = 'period required!';
@@ -120,12 +141,14 @@ if(isset($_POST['save'])){
       $techname=mysqli_real_escape_string($con,$_POST['techname']);
       $departm=mysqli_real_escape_string($con,$_POST['departm']);
       $regno=mysqli_real_escape_string($con,$_POST['regno']);
+      $contact=mysqli_real_escape_string($con,$_POST['contact']);
+      $email=mysqli_real_escape_string($con,$_POST['email']);
       $period=mysqli_real_escape_string($con,$_POST['period']);
      // $returnd=mysqli_real_escape_string($con,$_POST['returnd']);
       $status="borrowed";
       $returnd=return_date($period);//call the date function to calcuate return date
       //create a variable sql
-      $sql="INSERT INTO borrow(asset_no,tech_name,department,reg_no,period,return_date,status_)VALUES('$assetno','$techname', '$departm','$regno','$period','$returnd','$status')";
+      $sql="INSERT INTO borrow(asset_no,tech_name,department,reg_no,period,return_date,status_,contact,email)VALUES('$assetno','$techname', '$departm','$regno','$period','$returnd','$status','$contact','$email')";
      
       //SAVE TO DB AND CHECK
     if(mysqli_query($con, $sql)){
@@ -202,16 +225,27 @@ if(isset($_POST['save'])){
               </div>
             </div>
             <div class="form-group row">
+              <label for="inputRegno" class="col-sm-2 col-form-label">Contact</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($regno)?>" name="contact" id="inputcontact" placeholder="contact">
+                <div class="text-danger"><?php echo $errors['regno'];?></div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputRegno" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($regno)?>" name="email" id="inputemail" placeholder="email">
+                <div class="text-danger"><?php echo $errors['regno'];?></div>
+              </div>
+            </div>
+            <div class="form-group row">
               <label for="inputtechname" class="col-sm-2 col-form-label">Period</label>
               <div class="col-sm-10">
               <select class="form-control" id="typeselect" value="<?php echo htmlspecialchars($period)?>" name="period">
                   <option>short_term</option>
                   <option>long_term</option>
                   <option>Project</option>
-                 
-                
                 </select>
-               
                 <div class="text-danger"><?php echo $errors['period'];?></div>
               </div>
               

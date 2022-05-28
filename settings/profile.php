@@ -36,32 +36,40 @@ $stmt->close();
             <div class="col-sm-7">
             <div class="card rounded shadow border-0">
             <div class="card-body  bg-dark rounded">
-            <form action="borrow.php" method="POST" class="form-container border-radius:20px ">
+            <form action="borrow.php" method="POST" action='../settings/' class="form-container border-radius:20px ">
             <h5 class="text-center font-weight-bold text-success"> EDIT ACCOUNT DETAILS </h5>
             <br>
             
             <div class="form-group row">
               <label for="inputasset" class="col-sm-2 col-form-label text-primary">Username</label>
               <div class="col-sm-5">
-                <input type="text"  value="" class="form-control" id="inputasset" placeholder="username">
+                <input type="text"  value="" name="username" class="form-control" id="inputasset" placeholder="username" required>
                
               </div>
             </div>
             <div class="form-group row">
               <label for="inputasset" class="col-sm-2 col-form-label text-primary">Email</label>
               <div class="col-sm-5">
-                <input type="text"  value="" class="form-control" id="inputasset" placeholder="email">
+                <input type="text"  value="" name="Email" class="form-control" id="inputasset" placeholder="email">
                
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputasset" class="col-sm-2 col-form-label text-primary">Pasword</label>
+              <label for="password" class="col-sm-2 col-form-label text-primary">Pasword</label>
               <div class="col-sm-5">
-                <input type="text"  value="" class="form-control" id="inputasset" placeholder="password">
+                <input type="text"  value="" name ="password" class="form-control" id="inputasset" placeholder="password">
                
               </div>
+             
             </div>
-            <button type="save" name="save" class="btn btn-success col-sm-3  "><i class="fa fa-floppy-o"></i>|save</button>
+            <div class="form-group row">
+              <label for="confirm_password" class="col-sm-2 col-form-label text-primary"> Confirm Pasword</label>
+              <div class="col-sm-5">
+                <input type="text"  value="" name="confirm_password" class="form-control" id="inputasset" placeholder=" confirm password">
+               
+              </div>
+              </div>
+            <button type="submit" name="save" class="btn btn-success col-sm-3  "><i class="fa fa-floppy-o"></i>|save</button>
             </form>
 
              </div>

@@ -2,11 +2,13 @@
 
 //check whether the user is logged in
 require_once('../powerscripts/logincheck.php');
+//include thec ocunt unction
+require_once('../powerscripts/count_check.php');
 // Include config file
-require_once("../databaseconnection/config.php") ;
+require("../databaseconnection/config.php") ;
 
 //construct query
-$sql='SELECT  asset_no,condition_,status_  FROM borrow where condition_="damaged"';
+$sql='SELECT  asset_no,condition_,status_  FROM borrow where status_="Uncleared"';
 //make the query
 $result=mysqli_query($con,$sql);
 //counting of records with damaged items
@@ -32,7 +34,7 @@ mysqli_close($con);
                     <div class="col-lg-12  mx-auto">
                       <div class="card rounded bg-white shadow border-0">
                         <div class="card-body p-5 bg-white rounded">
-                        <h4 class="text-center font-weight-bold"><u>DAMAGED REPORT</u>  </h4>
+                        <h4 class="text-center font-weight-bold"><u>DAMAGED REPORT<?php echo $damaged_count?></u>  </h4>
                         <hr>
 
                           <div class="table-responsive">
@@ -40,6 +42,7 @@ mysqli_close($con);
                               <thead class="text-primary font-weight-bold">
                                 <tr>
                                   <th>ASSET NO</th>
+                                  <th>ASSET NAME</th>
                                   <th>CONDITION</th>
                                   <th>STATUS</th>
                                   
@@ -48,8 +51,9 @@ mysqli_close($con);
                               <tbody>
                                 <?php foreach($borrows as $borrow){?>
                                   <tr>
+                                  <?php $asse=getassetname($borrow['asset_no']);?>//ge the name o assets rom assets table
                                   <td><?php echo htmlspecialchars($borrow['asset_no']);?></td>
-                                 
+                                  <td><?php echo htmlspecialchars($asse);?></td>
                                   <td><?php echo htmlspecialchars($borrow['condition_']);?></td>
                                   <td><?php echo htmlspecialchars($borrow['status_']);?></td>
                                  
