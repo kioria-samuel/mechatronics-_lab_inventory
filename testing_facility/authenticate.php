@@ -2,14 +2,14 @@
 session_start();
 // Include config file
 require_once ("../databaseconnection/config.php");
-$username_err = $password_err =$emai_err= $login_err = "";
+$username_err = $password_err =$emai_err= $login_err =$errors= "";
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( !isset($_POST['username'], $_POST['password']) ) {
 	// Could not get the data that should have been sent.
 	exit('Please fill both the username and password fields!');
 }
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT id, password,account_type FROM accounts WHERE username = ? AND activation_status="activate" ')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['username']);
 	$stmt->execute();
@@ -17,7 +17,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
 	$stmt->store_result();
 //check if the username alreadt exists
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $password);
+        $stmt->bind_result($id, $password,$account_type);
         $stmt->fetch();
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -31,11 +31,11 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
             header('Location:../test.php');
         } else {
             // Incorrect password
-            echo 'Incorrect username and/or password!';
+            $errors= 'Incorrect username and/or password!';
         }
     } else {
         // Incorrect username
-        echo 'Incorrect username and/or password!';
+        $errors= 'unregistered user';
     }
 
 

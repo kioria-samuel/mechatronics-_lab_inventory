@@ -10,8 +10,12 @@ require_once('powerscripts/logincheck.php');
 require_once('powerscripts/count_check.php');
 //include the defaulters query report
 require('powerscripts/defaulters.php');
+//include the dormant accounts  query report
+require('powerscripts/accounts.php');
 //include the overdue_checker query
 require('powerscripts/overdue_checker.php');
+//include the account activation ile
+require('powerscripts/account_activation.php');
 
 $damaged_count=count_items_damaged();
  $instock_cons_count=count_items_borrow("consumable");
@@ -21,10 +25,64 @@ $damaged_count=count_items_damaged();
 ?>
 <!DOCTYE html>
 <html>
-    <?php include('basic_template/header.php');?>
+    <?php include('basic_template/admin_header.php');?>
     <!-- begin  o dashboard -->
  <main role="main" class="col-md-9 ml-sm-auto col-lg-12 px-4">
      <!--end   o dashboard -->
+ <h3 class="text-light">DORMANT ACCOUNTS</h3>
+ <hr>
+
+ <div class="table-responsive bg-white">
+  
+ <!-- <button class="btn btn-success" onclick="printTable();"><span class="glyphicon glyphicon-print"></span> Print</button> -->
+                            <table id="#" style="width:100%" class="table table-striped  table-white">
+                              <thead class="text-primary font-weight-bold">
+                                <tr>
+                                  <th>USERNAME</th>
+                                  <th>EMAIL</th>
+                                  <th>ACCOUNT TYPE</th>
+                                  <th>ACTIVATION STATUS</th>
+                                  <th>ACTION</th>
+                                 
+                                </tr>
+                              </thead>
+                              <tbody>
+                                
+                              <?php foreach($accounts as $account){?>
+                                  <tr>
+                                  <form class="form-container " action="admin_page.php" method="post">
+                                   
+                                  <td> <input type="text" class="form-control"  name="username" value="<?php echo htmlspecialchars($account['username']);?>" ></td>
+                                  <td> <input type="text" class="form-control"  name="email" value="<?php echo htmlspecialchars($account['email']);?>" ></td>
+                                  <td> <select class="form-control" name="accounttype"  id="typeselect">
+                                        <option>none</option>
+                                         <option>admin</option>
+                                        <option>regular</option>
+                                     </select>
+                                    </td>
+                                  <td><select class="form-control" name="activationstatus"  id="typeselect">
+                                     <option>activate</option>
+                                     <option>delete</option>
+                                 </select>
+                                </td>
+                                <td>
+                                <button type="submit" name="save" class="btn btn-primary text-light  col-sm-8  "><i class="fa fa-plus"></i>|SAVE</button>
+                                </td>
+                                 
+                                  
+                              </form>
+                                </tr>
+                                <?php
+                                }
+                                ?>             
+                               
+                               
+                               
+                              </tbody>
+                            </table>
+
+ </div> 
+ <!-- start of defaulters report -->
  <h3 class="text-light">DEFAULTERS</h3>
  <hr>
  <div class="text-dark"><?php  echo "Feedback:"."!!!!". $overdue_status?></div>
@@ -32,7 +90,7 @@ $damaged_count=count_items_damaged();
  <div class="table-responsive bg-white">
   
  <button class="btn btn-success" onclick="printTable();"><span class="glyphicon glyphicon-print"></span> Print</button>
-                            <table id="mytablet" style="width:100%" class="table table-striped table-bordered table-white">
+                            <table id="mytablet" style="width:100%" class="table table-striped  table-white">
                               <thead class="text-primary font-weight-bold">
                                 <tr>
                                   <th>Asset No</th>
@@ -70,6 +128,7 @@ $damaged_count=count_items_damaged();
                             </table>
 
  </div> 
+  <!-- end of defaulters report -->
 <!-- start o cards  -->
 <h3 class="text-white ">STATISTICS</h3>
 <hr>

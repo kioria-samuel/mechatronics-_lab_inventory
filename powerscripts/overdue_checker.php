@@ -1,4 +1,6 @@
 <?php
+//initilize sowm error variables
+$overdue_status=$mailing_status="";
 
 require("databaseconnection/config.php");//include connection to database
 //construct query
@@ -21,14 +23,14 @@ foreach($records as $record ){
         $status="overdue";
        
 $subject = "overdue lab component";
-$m1="honouring return dates increases your chances  of boorrowing components from the Lab kindly return the following items";
+$m1="honouring return dates increases your chances  of boorrowing components from the Lab kindly return the following items;n/";
 $m2=$asset_no;
 $body =$m1."".$m2 ;
 $sender = "From:mechlab9@gmail.com";
 if(mail($receiver, $subject, $body, $sender)){
-    echo "Email sent successfully to $receiver";
+    $mailing_status= "Email sent successfully to $receiver";
 }else{
-    echo "Sorry, failed while sending mail!";
+    $mailing_status="Sorry, failed while sending mail!";
 }
 
         //prepare an update statement where to upate the status column to overdue
@@ -41,7 +43,7 @@ if(mail($receiver, $subject, $body, $sender)){
         
         
     }else{
-        echo"no overdue assets";
+        $overdue_status="no overdue assets";
         
     }
 

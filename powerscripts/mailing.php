@@ -11,15 +11,15 @@
 // } else{
 // echo 'Unable to send email. Please try again.';
 // }
-// $receiver = "samkioria@gmail.com";
-// $subject = "overdue lab component";
-// $body = "honouring return dates increases your chances  of boorrowing components from the Lab kindly return the following items";
-// $sender = "From:samkioria@gmail.com";
-// if(mail($receiver, $subject, $body, $sender)){
-//     echo "Email sent successfully to $receiver";
-// }else{
-//     echo "Sorry, failed while sending mail!";
-// }
+$receiver = "newtonkariuki214@gmail.com";
+$subject = "overdue lab component";
+$body = "honouring return dates increases your chances  of boorrowing components from the Lab kindly return the following items";
+$sender = "From:samkioria@gmail.com";
+if(mail($receiver, $subject, $body, $sender)){
+    echo "Email sent successfully to $receiver";
+}else{
+    echo "Sorry, failed while sending mail!";
+}
 
 // $to = 'samkioria@gmail.com';
 // $subject = 'overdue asset';
@@ -47,33 +47,33 @@
 //     echo 'Unable to send email. Please try again.';
 // }
 //get the name o assets rom assets table
-function getassetname($input){
-    require("../databaseconnection/config.php") ;
+// function getassetname($input){
+//     require("../databaseconnection/config.php") ;
      
-   //construct query
-   $sql='SELECT  asset_name FROM assets where asset_no=?';
-   //$stmt=mysqli_prepare($con,$sql);
-   $stmt=mysqli_prepare($con,$sql);
-   //binding values to the prepared statement
-   mysqli_stmt_bind_param($stmt,"s",$xx);
-   $xx=$input;
-   //execute the statement
-   mysqli_stmt_execute($stmt);
+//    //construct query
+//    $sql='SELECT  asset_name FROM assets where asset_no=?';
+//    //$stmt=mysqli_prepare($con,$sql);
+//    $stmt=mysqli_prepare($con,$sql);
+//    //binding values to the prepared statement
+//    mysqli_stmt_bind_param($stmt,"s",$xx);
+//    $xx=$input;
+//    //execute the statement
+//    mysqli_stmt_execute($stmt);
   
-   //binding the rwsult
-   mysqli_stmt_bind_result($stmt,$coun);//takes two variable result o query execurion and the variables to hold the new parameters
-  // mysqli_stmt_num_rows($stmt);
-   mysqli_stmt_fetch($stmt);
-    //store result
-   // mysqli_stmt_store_result($stmt);
-   //fetch result as an associative array
-   mysqli_stmt_close($stmt);
+//    //binding the rwsult
+//    mysqli_stmt_bind_result($stmt,$coun);//takes two variable result o query execurion and the variables to hold the new parameters
+//   // mysqli_stmt_num_rows($stmt);
+//    mysqli_stmt_fetch($stmt);
+//     //store result
+//    // mysqli_stmt_store_result($stmt);
+//    //fetch result as an associative array
+//    mysqli_stmt_close($stmt);
  
-   // Close statement
-   return $coun;
-   }
-   $asset=getassetname(7897);
-   echo $asset;
+//    // Close statement
+//    return $coun;
+//    }
+//    $asset=getassetname(7897);
+//    echo $asset;
 
 
 ?>

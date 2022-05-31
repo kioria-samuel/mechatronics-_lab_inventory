@@ -45,7 +45,7 @@ return $damaged_count;
    function count_items_borrowed(){
     require("databaseconnection/config.php") ;
      //construct query
-$sql='SELECT  asset_no,condition_,status_  FROM borrow where status_="borrowed"';
+$sql='SELECT  asset_no,condition_,status_  FROM borrow where status_="borrowed" OR status_="overdue" ';
 //make the query
 $result=mysqli_query($con,$sql);
 //counting of records with damaged items
