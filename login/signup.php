@@ -66,6 +66,7 @@ if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email, acti
   $stmt->bind_param('ssss', $_POST['username'], $password, $_POST['email'],  $activation_status);
   
 	$stmt->execute();
+  $stmt->close();
  
   $from    = 'noreply@mechlab9.com';
   $subject = 'Account Activation status';

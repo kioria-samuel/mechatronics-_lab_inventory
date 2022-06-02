@@ -3,7 +3,7 @@
 $username="";
 //initilize errors variables
 $email_err=$query_err=$mail_err="";
-$errors=array('query_err'=>'','username_err'=>'','mail_err'=>'');
+$errors=array('query_err'=>'','username_err'=>'','mail_err'=>'','password_err'=>'','cpass_err'=>'');
 // Include config file
 require_once "../databaseconnection/config.php";
 // Now we check if the data was submitted, isset() function will check if the data exists.
@@ -12,7 +12,7 @@ if (isset( $_POST['username'])) {
 //	exit('Please complet the registration form!');
 
 // Make sure the submitted registration values are not empty.
-if ( empty($_POST['username'])) {
+if ( empty($_POST['username'])||empty($_POST['password'])||empty($_POST['cpassword'])) {
 	// One or more values are empty.
   $errors['username_err']="please complete the registration form";
 
@@ -24,6 +24,17 @@ if ((preg_match('/^[a-zA-Z0-9]+$/', $_POST['username']) == 0)) {
     $username= $_POST['username'];
     $errors['username_err']="username is not valid!";
 	}
+  //password lenth check
+if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
+	//exit('Password must be between 5 and 20 characters long!');
+  $errors['password_err']='Password must be between 5 and 20 characters long!';
+}
+//password match check
+if(!($_POST['password']==$_POST['cpassword'])){
+  //password shound be the same in both cases
+  $errors['cpass_err']='Password  did not match!';
+
+}
 
 }
 
@@ -39,26 +50,39 @@ if ($stmt = $con->prepare('SELECT email FROM accounts WHERE username = ?')) {
 	if ($stmt->num_rows > 0) {
     $stmt->bind_result($email);//get the email
     $stmt->fetch();//etch the result
-    //send the users an activation link
-    $from    = 'noreply@mechlab9.com';
+//insert new password where username =the said username
+if ($stmt = $con->prepare('UPDATE accounts SET password=?,activation_status=? WHERE username = ?')) {
+  //bind the parameters
+  $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+  $activationstatus="dormant";
+  $stmt->bind_param('sss',$password, $activationstatus, $_POST['username']);
+  //execute the query
+  $stmt->execute();
+  //send the users an activation link
+  $from    = 'noreply@mechlab9.com';
   $subject = 'PASSWORD RESET';
   $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
   // Update the activation variable below
-  $activate_link = '<P>http://localhost:8000/login/reset_password.php?<br></p>';
+  $activate_link = 'http://localhost:8000/login/reset_password.php?email='.$email;
   $message = '<p>click this link to reset your password <br></p>'.$activate_link.'<p>regards <br>Administrator<br>Mechatronics lab inventory</p>';
+  //$message = '<p>click this link to reset your password <br>.<a href=$activate_link></a>$activate_link.regards <br>Administrator<br>Mechatronics lab inventory</p>';
  
   if( mail($email, $subject, $message, $headers)){
-    $errors['mail_err']="mail sent";
+    $errors['mail_err']="check your mail for reset status";
   
   }else{
     $errors['mail_err']="mail not sent";
   
   }
-  $errors['mail_err']= 'check your mail to rest your password';
+
+
+}
+    
+  //$errors['mail_err']= 'check your mail to reset your password';
 		
 	} else {
     // no username was ound
-		$errors['query_err']="incorrect username";
+		$errors['username_err']="incorrect username";
 		//echo 'Username exists, please choose another!';
 
 	}
@@ -104,22 +128,25 @@ $con->close();
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" name='username' value="<?php echo htmlspecialchars($username)?>"class="form-control  " id="username" placeholder="username">
-            <h4 class="text-warning "> <?php echo $errors['username_err'];?> </h4>
+            <h4 class="text-danger "> <?php echo $errors['username_err']."!!!!!";?> </h4>
             <h4 class="text-warning "> <?php echo $errors['mail_err'];?> </h4>
           </div>
         <!-- <div class="form-group">
           <h4 class="text-center font-weight-bold"> Reset password </h4>
           <label for="InputEmail1">Enter code</label>
            <input type="text" class="form-control" id="EnterCode" aria-describeby="emailHelp" placeholder="Enter Code">
-        </div>
+        </div> -->
         <div class="form-group">
           <label for="InputPassword1">Password</label>
-          <input type="password" class="form-control" id="InputPassword1" placeholder="Password">
+          <input type="password" name="password" class="form-control" id="InputPassword1" placeholder="Password">
+          <h4 class="text-warning "> <?php echo $errors['password_err'];?> </h4>
+     
         </div>
         <div class="form-group">
           <label for="Confirm Password">Confirm Password</label>
-          <input type="password" class="form-control" id="InputPassword1" placeholder="Confirm Password">
-        </div> -->
+          <input type="password" name="cpassword" class="form-control" id="InputPassword1" placeholder="Confirm Password">
+          <h4 class="text-warning "> <?php echo $errors['cpass_err'];?> </h4>
+        </div>
         <button type="submit" name="reset"class="btn btn-primary btn-block">Reset Password</button>
         <div class="form-footer">
           <!-- <p> Don't have an account? <a href="#">Sign Up</a></p> -->

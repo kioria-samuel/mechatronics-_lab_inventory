@@ -96,7 +96,7 @@ if ($stmt = $con->prepare('SELECT id, password,account_type FROM accounts WHERE 
         <button type="submit" class="btn btn-text-muted btn-block"><a href="#" class="text-decoration-none">Log in</a></button>
         <div class="form-footer">
           <p> Don't have an account? <a href="../login/signup.php">Sign Up</a></p>
-          <p> Forgot passsword? <a href="reset_password.html">Reset Password</a></p>
+          <p> Forgot passsword? <a href="username.php">Reset Password</a></p>
         </div>
         </form>
       </section>
