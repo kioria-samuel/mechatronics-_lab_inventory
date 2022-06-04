@@ -91,7 +91,7 @@ if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email, acti
 }
 
 	}
-	$stmt->close();
+	
 } else {
 	// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
 	$errors['query_err']= 'Could not prepare statement!';

@@ -54,22 +54,37 @@ return_date.setDate(new Date().getDate() + 7)
   $('#mytablet').DataTable({
     "scrollY": "50vh",
     "scrollCollapse": true,
+    dom: 'Bfrtip',
+    buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
   });
   $('.dataTables_length').addClass('bs-select');
 });
         </script>
-        <!-- script or printing tables  -->
+        <!-- script for printing datatables -->
+        <!-- <script>
+          $(document).ready(function() {
+    $('#mytablet').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+        </script> -->
+        <!-- script or printing tables 
         <script>
           function printTable() {
 	var el=document.getElementById("mytablet");
-	el.setAttribute('border', '1px');
-	el.setAttribute('cellpadding', '5');
+//	el.setAttribute('border', '1px');
+//	el.setAttribute('cellpadding', '5');
 	newPrint=window.open("");
 	newPrint.document.write(el.outerHTML);
 	newPrint.print();
 	newPrint.close();
 }
-        </script>
+        </script> -->
         <!-- showin account details on hover -->
         <!-- <script>
 $(function(){

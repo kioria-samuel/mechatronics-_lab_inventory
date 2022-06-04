@@ -29,9 +29,9 @@ $damaged_count=count_items_damaged();
  <hr>
  <div class="text-dark"><?php  echo "Feedback:"."!!!!". $overdue_status?></div>
    <div class="text-dark text-center"><?php  echo "Maling status:"."!!!!". $mailing_status?></div>
+   <!-- <button class="btn btn-success" onclick="printTable();"><span class="glyphicon glyphicon-print"></span> Print</button> -->
  <div class="table-responsive bg-white">
-  
- <button class="btn btn-success" onclick="printTable();"><span class="glyphicon glyphicon-print"></span> Print</button>
+
                             <table id="mytablet" style="width:100%" class="table table-striped table-bordered table-white">
                               <thead class="text-primary font-weight-bold">
                                 <tr>

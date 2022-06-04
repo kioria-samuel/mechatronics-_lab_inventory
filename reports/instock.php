@@ -31,7 +31,7 @@ mysqli_close($con);
                         <h4 class="text-center font-weight-bold"><u>INSTOCK REPORT</u> </h4>
                         <hr>
                           <div class="table-responsive">
-                            <table id="mytable" style="width:100%" class="table table-striped table-bordered">
+                            <table id="mytablet" style="width:100%" class="table table-striped table-bordered">
                               <thead  class="text-primary font-weight-bold">
                                 <tr>
                                   <th>ID</th>
