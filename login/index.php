@@ -6,7 +6,7 @@ $username_err = $password_err =$emai_err= $login_err =$errors= "";
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( isset($_POST['username'], $_POST['password']) ) {
   // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT id, password,account_type FROM accounts WHERE username = ? AND activation_status="activate" ')) {
+if ($stmt = $con->prepare('SELECT user_id, password,account_type FROM accounts WHERE username = ? AND activation_status="activate" ')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['username']);
 	$stmt->execute();
@@ -62,7 +62,7 @@ if ($stmt = $con->prepare('SELECT id, password,account_type FROM accounts WHERE 
  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="..//css/style.css">
  
     </head>
     <body>

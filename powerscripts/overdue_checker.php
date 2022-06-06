@@ -4,7 +4,7 @@ $overdue_status=$mailing_status="";
 
 require("databaseconnection/config.php");//include connection to database
 //construct query
-$sql='SELECT  id,asset_no,return_date,email  FROM borrow where status_="borrowed"';
+$sql='SELECT  borrow_id,asset_no,return_date,email  FROM borrow where status_="borrowed"';
 //make the query
 mysqli_query($con,$sql);
 $result=mysqli_query($con,$sql);
@@ -15,7 +15,7 @@ $records=mysqli_fetch_all($result,MYSQLI_ASSOC);
 foreach($records as $record ){
     $date=date("Y-m-d");//get todays date
    
-    $id=$record['id'];
+    $id=$record['borrow_id'];
     $asset_no=$record['asset_no'];
      //send email  to deaulter
      $receiver = $record['email'];

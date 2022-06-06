@@ -6,7 +6,7 @@ require_once('../powerscripts/logincheck.php');
 require_once("../databaseconnection/config.php") ;
 
 //construct query
-$sql='SELECT  asset_no,tech_name,department,reg_no,borrow_date,period,return_date,condition_,status_  FROM borrow ';
+$sql='SELECT  department,reg_no,borrow_date,period,return_date,condition_,status_,assets.asset_name,assets.condition_,assets.asset_no ,accounts.username,accounts.username FROM borrow,assets,accounts WHERE borrow.asset_no=assets.asset_no AND borrow.user_id=accounts.user_id AND borrow.cleared_by=accounts.user_id ';
 //make the query
 $result=mysqli_query($con,$sql);
 //fetch the results from the query as an array
@@ -35,21 +35,25 @@ mysqli_close($con);
                               <thead class="text-primary font-weight-bold">
                                 <tr>
                                   <th>ASSET NO</th>
+                                  <th>ASSET NAME</th>
                                   <th>TECH NAME</th>
                                   <th>DEPARTMENT </th>
                                   <th>REG NO</th>
                                   <th> BORROW DATE</th>
                                   <th>PERIOD</th>
-                                  <th>RETURN DATE</th>
+                                  <th> RETURN DATE</th>
                                   <th>CONDITION</th>
                                   <th>STATUS</th>
+                                  <th>CLEARED_BY</th>
+
                                 </tr>
                               </thead>
                               <tbody>
                                 <?php foreach($borrows as $borrow){?>
                                   <tr>
                                   <td><?php echo htmlspecialchars($borrow['asset_no']);?></td>
-                                  <td><?php echo htmlspecialchars($borrow['tech_name']);?></td>
+                                  <td><?php echo htmlspecialchars($borrow['asset_name']);?></td>
+                                  <td><?php echo htmlspecialchars($borrow['username']);?></td>
                                   <td><?php echo htmlspecialchars($borrow['department']);?></td>
                                   <td><?php echo htmlspecialchars($borrow['reg_no']);?></td>
                                   <td><?php echo htmlspecialchars($borrow['borrow_date']);?></td>
@@ -57,6 +61,7 @@ mysqli_close($con);
                                   <td><?php echo htmlspecialchars($borrow['return_date']);?></td>
                                   <td><?php echo htmlspecialchars($borrow['condition_']);?></td>
                                   <td><?php echo htmlspecialchars($borrow['status_']);?></td>
+                                  <td><?php echo htmlspecialchars($borrow['username']);?></td>
                                  
                                 </tr>
                                 <?php

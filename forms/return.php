@@ -8,7 +8,7 @@ $status=$condition=$assetno=$techname=$departm=$regno=$borrowd=$period=$returnd=
 if(isset($_POST['submit'])){
   // echo 'there is something';
    // Prepare a select statement where status is null
-   $sql = "SELECT asset_no,tech_name,department,reg_no,borrow_date,period,return_date FROM borrow WHERE asset_no =? AND status_='borrowed'";
+   $sql = "SELECT asset_no,accounts.username,department,reg_no,borrow_date,period,return_date FROM borrow,accounts WHERE borrow.user_id=accounts.user_id AND borrow.asset_no =? AND (status_='borrowed' OR status_='overdue'OR status_='Uncleared')";
           
    if($stmt = mysqli_prepare($con, $sql)){
        // Bind variables to the prepared statement as parameters
@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
             // print_r($assetname);
             // print_r($model);
               
-              $status="component registered";
+              $status="borrowed component/uncleared asset";
              // $assets=mysqli_fetch_all($stmt,MYSQLI_ASSOC);
            } else{
               //  echo "component not registred";
@@ -51,17 +51,21 @@ if(isset($_POST['submit'])){
     $status= "please scan";
     //check if the data is sent by the post method to the server
 if(isset($_POST['clear'])){
-  $condition='';
+  $condition=$_POST['cond'];
   $status=$_POST['status'];
   $assetno=$_POST['assetno'];
   $condition=$_POST['cond'];
+  $cleared_by=$_SESSION['id'];
    // Prepare an update statement
- $sql = "UPDATE borrow SET condition_=?,status_=?  WHERE asset_no=? AND status_='borrowed'";
+ $sql = "UPDATE borrow,assets SET status_=?,cleared_by=?,assets.condition_=?  WHERE  borrow.asset_no=? AND assets.asset_no=? ";
  if ($stmt = mysqli_prepare($con,$sql)){
-  mysqli_stmt_bind_param($stmt, "ssi", $condition, $status, $assetno);
-  mysqli_stmt_execute($stmt);
+  mysqli_stmt_bind_param($stmt, "sisii", $status,$cleared_by,$condition, $assetno,$assetno);
+  if(mysqli_stmt_execute($stmt)){
   $status= "student cleared";
   // echo "Record Updated:";
+}else{
+  $status= "student cleared";
+}
  }
 }
 }
@@ -73,11 +77,11 @@ if(isset($_POST['clear'])){
     <!-- start of register form -->
     <section class="container-fluid">
       <section class="row justify-content-left p-5">
-        <section class="col-12 col-sm-6 col-md-4">
+        <section class="col-xs-12 col-sm-10 col-md-8">
           <form  class="form-container border-radius:20px " action="return.php" method="POST">
             <h4 class="text-center font-weight-bold"> RETURN  ASSET </h4>
             <div class="form-group row">
-              <button type="scan" name="submit" class="btn btn-success col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
+              <button type="scan" name="submit" class="btn btn-info col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
               <div class="col-sm-10">
                 <input type="text" class="form-control" name ="assetno" value="<?php echo htmlspecialchars($assetno)?>" id="scannedbarcode" placeholder="input_from_scanner">
                 <div class="text-danger"><?php echo $status;?></div>
@@ -152,8 +156,8 @@ if(isset($_POST['clear'])){
             <div class="form-inline-block">
 
              
-              <button type="clear" name ="clear" class="btn btn-success col-sm-3  "><i class="fa fa-floppy-o"></i>|clear</button>
-              <button type="add" class="btn btn-success col-sm-2  "><i class="fa fa-plus"></i>|add</button>
+              <button type="clear" name ="clear" class="btn btn-info col-sm-3  "><i class="fa fa-floppy-o"></i>|clear</button>
+              <button type="add" class="btn btn-info col-sm-2  "><i class="fa fa-plus"></i>|add</button>
               <!-- <button type="scan" class="btn btn-success col-sm-3  "><i class="fa fa-trash"></i>|delete</button> -->
 
              

@@ -88,7 +88,7 @@
                             </li> -->
                             <li class="nav-item">
                             <div class="dropdown mydropdowncss">
-                            <a href="#" class=" dropdown-toggle text-dark" data-toggle="dropdown"><i class="fas fa-bell fa-2xl  "></i> <span class="caret"></span></a> 
+                            <a href="#" class=" dropdown-toggle text-white" data-toggle="dropdown"><i class="fas fa-bell fa-2xl  "></i> <span class="caret"></span></a> 
                             <ul class="dropdown-menu bg-secondary text-light  ">
                             <li>LOGGED IN AS;</li>
                                 <li>Name:<?php echo $_SESSION['name']?></li>
@@ -99,8 +99,8 @@
                              </div>      
                             </li>
                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="../powerscripts/logout.php"> 
+                            <li class="nav-item ">
+                                <a class="nav-link text-white" href="../powerscripts/logout.php"> 
                                     <i class="fas fa-sign-out-alt fa-2xl "></i></a>
                             </li>
                         </ul>

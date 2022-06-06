@@ -6,7 +6,7 @@ function count_items_borrow($input){
     require("databaseconnection/config.php") ;
      
    //construct query
-   $sql='SELECT  id FROM assets where type=?';
+   $sql='SELECT  asset_no FROM assets where type=?';
    //$stmt=mysqli_prepare($con,$sql);
    $stmt=mysqli_prepare($con,$sql);
    //binding values to the prepared statement
@@ -27,7 +27,7 @@ function count_items_borrow($input){
    function count_items_defaulters(){
     require("databaseconnection/config.php") ;
      //construct query
-$sql='SELECT  asset_no,condition_,status_  FROM borrow where status_="Uncleared" OR status_="overdue"';
+$sql='SELECT  asset_no  FROM borrow where status_="Uncleared" OR status_="overdue"';
 //make the query
 $result=mysqli_query($con,$sql);
 //counting of records with damaged items
@@ -45,7 +45,7 @@ return $damaged_count;
    function count_items_borrowed(){
     require("databaseconnection/config.php") ;
      //construct query
-$sql='SELECT  asset_no,condition_,status_  FROM borrow where status_="borrowed" OR status_="overdue" ';
+$sql='SELECT  asset_no  FROM borrow where status_="borrowed" OR status_="overdue" ';
 //make the query
 $result=mysqli_query($con,$sql);
 //counting of records with damaged items
@@ -63,7 +63,7 @@ return $damaged_count;
    function count_items_damaged(){
     require("databaseconnection/config.php") ;
      //construct query
-$sql='SELECT  asset_no,condition_,status_  FROM borrow where condition_="damaged"';
+$sql='SELECT  asset_no  FROM assets where condition_="damaged"';
 //make the query
 $result=mysqli_query($con,$sql);
 //counting of records with damaged items

@@ -3,6 +3,7 @@
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
+//$DATABASE_NAME = 'mecht_lab_test';
 $DATABASE_NAME = 'mech_lab_inventory';
 //vaiable definition
 $username_err = $password_err =$emai_err= $login_err = "";

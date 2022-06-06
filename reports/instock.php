@@ -4,7 +4,7 @@ require_once('../powerscripts/logincheck.php');
 // Include config file
 require_once("../databaseconnection/config.php") ;
 //construct query
-$sql='SELECT id, asset_no,asset_name,model,type,created_at  FROM assets ORDER BY created_at';
+$sql='SELECT asset_no,asset_name,model,type,created_at ,accounts.username FROM assets LEFT JOIN  accounts ON assets.user_id=accounts.user_id ORDER BY created_at';
 //make the query
 $result=mysqli_query($con,$sql);
 //fetch the results from the query as an array
@@ -34,24 +34,26 @@ mysqli_close($con);
                             <table id="mytablet" style="width:100%" class="table table-striped table-bordered">
                               <thead  class="text-primary font-weight-bold">
                                 <tr>
-                                  <th>ID</th>
                                   <th>ASSET NO</th>
-                                  <th>ASSET</th>
+                                  <th>ASSET NAME</th>
                                   <th>MODEL</th>
                                   <th>TYPE</th>
                                   <th>CREATED_AT</th>
+                                  <th>USERNAME</th>
                                  
                                 </tr>
                               </thead>
                               <tbody>
                                 <?php foreach($assets as $asset){?>
                                   <tr>
-                                  <td><?php echo htmlspecialchars($asset['id']);?></td>
+                                 
                                   <td><?php echo htmlspecialchars($asset['asset_no']);?></td>
+                                
                                   <td><?php echo htmlspecialchars($asset['asset_name']);?></td>
                                   <td><?php echo htmlspecialchars($asset['model']);?></td>
                                   <td><?php echo htmlspecialchars($asset['type']);?></td>
                                   <td><?php echo htmlspecialchars($asset['created_at']);?></td>
+                                  <td><?php echo htmlspecialchars($asset['username']);?></td>
                                  
                                 </tr>
                                   <?php

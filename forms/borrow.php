@@ -1,18 +1,19 @@
 <?php
 //check whether the user is logged in
-require_once('../powerscripts/logincheck.php');
+require('../powerscripts/logincheck.php');
 // Include config file
 require_once("../databaseconnection/config.php") ;
 require("../powerscripts/date_calculator.php");
-$assetno=$status=$num='';
+$assetno=$status=$num=$statu='';
 $assetname=$model='';
+
 //initialize error variables
 $assetno=$assetname=$model=$type=$techname=$departm=$regno=$period=$returnd='';
 $errors=array('assetno'=>'','techname'=>'','departm'=>'','regno'=>'','period'=>'','returnd'=>'','contact'=>'','email'=>'');
 if(isset($_POST['submit'])){
 // echo 'there is something';
  // Prepare a select statement
- $sql = "SELECT asset_no,asset_name FROM assets WHERE asset_no =?";
+ $sql = "SELECT assets.asset_no,asset_name,borrow.status_ FROM assets,borrow WHERE borrow.asset_no =? AND (borrow.status_='overdue' OR borrow.status_='borrowed' OR borrow.status_='Uncleared' OR assets.condition_='Uncleared')";
         
  if($stmt = mysqli_prepare($con, $sql)){
      // Bind variables to the prepared statement as parameters
@@ -30,18 +31,22 @@ if(isset($_POST['submit'])){
           // $bind=mysqli_stmt_bind_result($stmt,$assetno,$assetname,$model);
           // $result=mysqli_fetch_row($bind);
           // print_r($result);
-          
-          $stmt->bind_result($assetno,$assetname);
+
+           //  echo "component not registred";
+           $status="cannot issue componet-status:";
+           $stmt->bind_result($assetno,$assetname,$statu);
           $stmt->fetch();
+         
+           
+         } else{
+         
           // print_r($assetno);
           // print_r($assetname);
           // print_r($model);
             
-            $status="component registered";
-           // $assets=mysqli_fetch_all($stmt,MYSQLI_ASSOC);
-         } else{
-            //  echo "component not registred";
-             $status="unregistered assset";
+            $status="component available for issuing";
+
+           
          }
      } else{
          echo "Oops! Something went wrong. Please try again later.";
@@ -138,7 +143,7 @@ if(isset($_POST['save'])){
 
     }else{
       $assetno=mysqli_real_escape_string($con,$_POST['assetno']);
-      $techname=mysqli_real_escape_string($con,$_POST['techname']);
+      $userid=mysqli_real_escape_string($con,$_POST['techname']);
       $departm=mysqli_real_escape_string($con,$_POST['departm']);
       $regno=mysqli_real_escape_string($con,$_POST['regno']);
       $contact=mysqli_real_escape_string($con,$_POST['contact']);
@@ -147,14 +152,17 @@ if(isset($_POST['save'])){
      // $returnd=mysqli_real_escape_string($con,$_POST['returnd']);
       $status="borrowed";
       $returnd=return_date($period);//call the date function to calcuate return date
+      
+      
       //create a variable sql
-      $sql="INSERT INTO borrow(asset_no,tech_name,department,reg_no,period,return_date,status_,contact,email)VALUES('$assetno','$techname', '$departm','$regno','$period','$returnd','$status','$contact','$email')";
+      $sql="INSERT INTO borrow(asset_no,user_id,department,reg_no,period,return_date,status_,contact,email)VALUES('$assetno','$userid', '$departm','$regno','$period','$returnd','$status','$contact','$email')";
      
       //SAVE TO DB AND CHECK
     if(mysqli_query($con, $sql)){
-      header('location:borrow.php');
+      $status='record saved';
+      //header('location:borrow.php');
     }else{
-      echo 'query error:'.mysqli_error($conn);
+      $status='query error:'.mysqli_error($conn);
     }
       
     }
@@ -176,14 +184,14 @@ if(isset($_POST['save'])){
       <!-- start of register form -->
       <section class="container-fluid">
       <section class="row justify-content-left p-5">
-        <section class="col-12 col-sm-6 col-md-4">
+        <section class="col-xs-12 col-sm-10 col-md-8">
           <form action="borrow.php" method="POST" class="form-container border-radius:20px ">
             <h4 class="text-center font-weight-bold"> BORROW ASSET </h4>
             <div class="form-group row">
-              <button type="submit" name="submit" class="btn btn-success col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
+              <button type="submit" name="submit" class="btn btn-info col-xs-5 col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
               <div class="col-sm-10">
                 <input type="text" name="assetno" class="form-control" value="<?php echo $assetno?>" id="scannedbarcode" placeholder="input_from_scanner">
-                <div class="text-danger"><?php echo $status;?></div>
+                <div class="text-danger"><?php echo $status.$statu;?></div>
                 <div class="text-danger"><?php echo $errors['assetno'];?></div>
                 <!-- <div class="text-danger"><?php echo $num;?></div> -->
               </div>
@@ -196,9 +204,9 @@ if(isset($_POST['save'])){
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputtechname" class="col-sm-2 col-form-label">Tech Name</label>
+              <label for="inputtechname" class="col-sm-2 col-form-label">Tech Id</label>
               <div class="col-sm-10">
-                <input type="text" name="techname"value="<?php echo htmlspecialchars($_SESSION['name'])?>" class="form-control" id="inputtechanme" placeholder="inputtechname">
+                <input type="text" name="techname"value="<?php echo htmlspecialchars($_SESSION['id'])?>" class="form-control" id="inputtechanme" placeholder="inputtechname">
                 <!-- <div class="text-danger">/ </div> -->
               </div>
             </div>
@@ -261,9 +269,9 @@ if(isset($_POST['save'])){
             <div class="form-inline-block">
 
              
-              <button type="save" name="save" class="btn btn-success col-sm-3  "><i class="fa fa-floppy-o"></i>|save</button>
-              <button type="add" class="btn btn-success col-sm-2  "><i class="fa fa-plus"></i>|add</button>
-              <button type="scan" class="btn btn-success col-sm-3  "><i class="fa fa-trash"></i>|delete</button>
+              <button type="save" name="save" class="btn btn-info col-sm-3  "><i class="fa fa-floppy-o"></i>|save</button>
+              <button type="add" class="btn btn-info col-sm-2  "><i class="fa fa-plus"></i>|add</button>
+              <button type="scan" class="btn btn-info col-sm-3  "><i class="fa fa-trash"></i>|delete</button>
 
              
                 

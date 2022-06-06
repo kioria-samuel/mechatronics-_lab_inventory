@@ -1,4 +1,6 @@
 <?php
+//check whether the user is logged in
+require_once('../powerscripts/logincheck.php');
 // Include config file
 require_once("../databaseconnection/config.php") ;
 $assetno=$status='';
@@ -57,11 +59,11 @@ if(isset($_POST['submit'])){
     <!-- start of register form -->
     <div class=" justify-content-center align-items-center container">
       <section class="row  p-5">
-        <section class="col-12 col-sm-6 col-md-4  ">
+        <section class="col-xs-12 col-sm-10 col-md-8  ">
           <form   class="form-container  border-radius:20px " action="identify.php" method="post">
             <h4 class="text-center font-weight-bold"> IDENTIFY ASSET </h4>
             <div class="form-group row">
-              <button type="submit" name="submit" class="btn btn-success col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
+              <button type="submit" name="submit" class="btn btn-info col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
               <div class="col-sm-10">
                 <input type="text" class="form-control"  value="<?php echo $assetno?>" name ="assetno" id="scannedbarcode" placeholder="input_from_scanner">
                 <div class="text-danger"><?php echo $status;?></div>
@@ -83,7 +85,7 @@ if(isset($_POST['submit'])){
             <div class="form-inline-block">
 
               <!-- <button type="save" class="btn btn-success col-sm-3  "><i class="fa fa-floppy-o"></i>|save</button> -->
-              <button type="verify"  id="types" class="btn btn-success col-sm-2"><a href="identify.php"></a><i class="fa fa-plus"></i>|reset</button>
+              <button type="verify"  id="types" class="btn btn-info col-sm-2"><a href="identify.php"></a><i class="fa fa-plus"></i>|reset</button>
               <!-- <button type="scan" class="btn btn-success col-sm-3  "><i class="fa fa-trash"></i>|delete</button> -->
   
             </div>
