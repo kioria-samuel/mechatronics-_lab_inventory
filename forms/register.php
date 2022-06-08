@@ -7,6 +7,39 @@ require_once("../databaseconnection/config.php") ;
 //initialize error variables
 $assetno=$assetname=$model=$status=$type=$query_err='';
 $errors=array('assetno'=>'','assetname'=>'','model'=>'','type'=>'',);
+//check whether the data is sent 
+if(isset($_POST['scan'])){
+  //check asset no
+  if (empty($_POST['assetno'])){
+    $errors['assetno'] ='asset no required!';
+  }else{
+    $assetno=$_POST['assetno'];
+    if(!preg_match('/^[a-zA-Z0-9]+$/', $assetno ) === 0){//ine tuning my validation
+      $errors['assetno'] ='assetno invalid!';
+    }
+  }
+  if(!array_filter($errors)){
+    $sql="SELECT asset_no FROM assets WHERE asset_no=?";
+    $stmt=mysqli_prepare($con, $sql);
+    //bind vaiables to the prepared statement
+    mysqli_stmt_bind_param($stmt, "s", $assetno);
+    $assetno=mysqli_real_escape_string($con,$_POST['assetno']);
+    //execute the query
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_store_result($stmt);
+       $num=mysqli_stmt_num_rows($stmt);//get the count 
+       if(!($num >0)){
+        $status="asset_no unique.can proceed with registration of asset";
+      }else{
+        $query_err= 'query error:!!!!!!! i.e the asset_no is registered  to another asset.its a violation to the data rule';
+      }
+  }else{
+    $status="solve the errors";
+  }
+
+}
+
+
 //check if the data is sent by the post method to the server
 if(isset($_POST['save'])){
   // echo htmlspecialchars($_POST['assetno']) ;//html special charss prevenrs xss any agle brackerts are converted to htnl tags 
@@ -59,15 +92,8 @@ if(isset($_POST['save'])){
       $type=mysqli_real_escape_string($con,$_POST['type']);
       $condition=mysqli_real_escape_string($con,$_POST['condition']);
       $id=$_SESSION['id'];
-      $sql="SELECT asset_no FROM assets WHERE asset_no=?";
-      $stmt=mysqli_prepare($con, $sql);
-      //bind vaiables to the prepared statement
-      mysqli_stmt_bind_param($stmt, "s", $assetno);
-      //execute the query
-      mysqli_stmt_execute($stmt);
-      mysqli_stmt_store_result($stmt);
-         $num=mysqli_stmt_num_rows($stmt);//get the count 
-         if(!($num >0)){
+     
+        
 
       //create a variable sql
       $sql="INSERT INTO assets(asset_no,asset_name,model,type,condition_,user_id)VALUES('$assetno','$assetname' , '$model','$type','$condition', ' $id' )";
@@ -83,9 +109,7 @@ if(isset($_POST['save'])){
   
 
     }
-  }else{
-    $query_err= 'query error:duplicate entry i.e the asset_no is registered  to another asset';
-  }
+  
         //ree thersult o query rom memory
 //mysqli_free_result($result);
       
@@ -106,13 +130,13 @@ mysqli_close($con);
           <form class="form-container border-radius:20px" action="register.php" method="post">
             <h4 class="text-center font-weight-bold"> REGISTER ASSET </h4>
             <div class="form-group row">
-              <button type="scan" class="btn btn-info col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
+              <button type="scan" name="scan" class="btn btn-info col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
               <div class="col-sm-10">
                 <input type="text" class="form-control" name ="assetno" value="<?php echo htmlspecialchars( $assetno) ?>" id="scannedbarcode" placeholder="input_from_scanner">
                 <div class="text-light"><?php echo $errors['assetno'];?></div>
                 
-                <h5 class="text-light font-weight-normal">   <?php echo $status;?>    </h5>
-                <h5 class="text-light font-weight-light"> <?php echo  $query_err;?>    </h5>
+                <h5 class="text-white font-weight-normal">   <?php echo $status;?>    </h5>
+                <h5 class="text-white font-weight-light"> <?php echo  $query_err;?>    </h5>
                 
                
               </div>
@@ -122,14 +146,14 @@ mysqli_close($con);
               <label for="inputasset" class="col-sm-2 col-form-label">Asset</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control"  name="assetname" value="<?php echo htmlspecialchars($assetname)   ?>" id="inputasset" placeholder="assset name">
-                <div class="text-danger"><?php echo $errors['assetname'];?></div>
+                <div class="text-light"><?php echo $errors['assetname'];?></div>
               </div>
             </div>
             <div class="form-group row">
               <label for="inputmodel" class="col-sm-2 col-form-label">Model</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" name="model" value="<?php echo htmlspecialchars($model)  ?>" id="inputmodel" placeholder="inputmodel">
-                <div class="text-danger"><?php echo $errors['model'];?></div>
+                <div class="text-light"><?php echo $errors['model'];?></div>
               </div>
             </div>
             <div class="form-group row">

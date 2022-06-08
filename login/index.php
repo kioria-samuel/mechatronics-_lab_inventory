@@ -6,9 +6,9 @@ $username_err = $password_err =$emai_err= $login_err =$errors= "";
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 if ( isset($_POST['username'], $_POST['password']) ) {
   // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT user_id, password,account_type FROM accounts WHERE username = ? AND activation_status="activate" ')) {
+if ($stmt = $con->prepare('SELECT user_id, password,account_type FROM accounts WHERE( username = ? OR email=? )AND activation_status="activate" ')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-	$stmt->bind_param('s', $_POST['username']);
+	$stmt->bind_param('ss', $_POST['username'],$_POST['username']);
 	$stmt->execute();
 	// Store the result so we can check if the account exists in the database.
 	$stmt->store_result();
@@ -77,25 +77,29 @@ if ($stmt = $con->prepare('SELECT user_id, password,account_type FROM accounts W
     <!-- row and justify-content-center class is used to place the form in center -->
     <section class="row justify-content-center">
       <section class="col-12 col-sm-6 col-md-4">
-        <div class="text-danger"><?php echo $errors;?></div>
+        
+        
         <form class="form-container"  action="index.php" method="post" autocomplete="off">
+        <h4 class="text-center font-weight-bold"> LOGIN </h4>
+        <div class="text-danger bg-dark"><?php echo $errors;?></div>
         <!-- <div class="form-group">
-          <h4 class="text-center font-weight-bold"> Login </h4>
+       
           <label for="InputEmail1">Email Address</label>
            <input type="email" class="form-control" id="InputEmail1" aria-describeby="emailHelp" placeholder="Enter email">
         </div> -->
+        
         <div class="form-group">
-          <label for="Inputusername">Username</label>
-          <input type="text" name="username" class="form-control" id="username" placeholder="username" required>
+          <label for="Inputusername" class="text-white">Username/email</label>
+          <input type="text" name="username" class="form-control r" id="username" placeholder="username" required>
         </div>
 
         <div class="form-group">
-          <label for="InputPassword1">Password</label>
+          <label for="InputPassword1" class="text-white">Password</label>
           <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
         </div>
-        <button type="submit" class="btn btn-text-muted btn-block"><a href="#" class="text-decoration-none">Log in</a></button>
-        <div class="form-footer">
-          <p> Don't have an account? <a href="../login/signup.php">Sign Up</a></p>
+        <button type="submit" class="btn  btn-primary btn-text-white btn-block"><a href="#" class="text-white">Log in</a></button>
+        <div class="form-footer text-white">
+          <p > Don't have an account? <a href="../login/signup.php">Sign Up</a></p>
           <p> Forgot passsword? <a href="username.php">Reset Password</a></p>
         </div>
         </form>

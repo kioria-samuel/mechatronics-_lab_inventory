@@ -90,9 +90,9 @@
                             <div class="dropdown mydropdowncss">
                             <a href="#" class=" dropdown-toggle text-white" data-toggle="dropdown"><i class="fas fa-bell fa-2xl  "></i> <span class="caret"></span></a> 
                             <ul class="dropdown-menu bg-secondary text-light  ">
-                            <li>LOGGED IN AS;</li>
+                            <li >LOGGED IN AS;</li>
                                 <li>Name:<?php echo $_SESSION['name']?></li>
-                                <li>Log id:<?php echo  $_SESSION['id']?> </li>
+                                
                                 <!-- <li><a href="#">Contact</a></li>
                                 <li><a href="#">Gallery</a></li> -->
                             </ul>

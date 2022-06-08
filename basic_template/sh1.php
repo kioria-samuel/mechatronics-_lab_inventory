@@ -40,7 +40,7 @@
 
 </head>
 <body>
-<div class="wrapper ">
+<div class="wrapper bg-muted ">
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header d-block">

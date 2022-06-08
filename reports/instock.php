@@ -39,16 +39,14 @@ mysqli_close($con);
                                   <th>MODEL</th>
                                   <th>TYPE</th>
                                   <th>CREATED_AT</th>
-                                  <th>USERNAME</th>
+                                  <th>REGISTERED BY</th>
                                  
                                 </tr>
                               </thead>
                               <tbody>
                                 <?php foreach($assets as $asset){?>
                                   <tr>
-                                 
                                   <td><?php echo htmlspecialchars($asset['asset_no']);?></td>
-                                
                                   <td><?php echo htmlspecialchars($asset['asset_name']);?></td>
                                   <td><?php echo htmlspecialchars($asset['model']);?></td>
                                   <td><?php echo htmlspecialchars($asset['type']);?></td>

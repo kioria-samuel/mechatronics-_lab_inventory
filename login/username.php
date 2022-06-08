@@ -126,10 +126,10 @@ $con->close();
       <section class="col-12 col-sm-6 col-md-4">
         <form class="form-container" method="post" action="username.php">
         <div class="form-group">
-            <label for="username">Username</label>
+            <label for="username " class="text-white">Username</label>
             <input type="text" name='username' value="<?php echo htmlspecialchars($username)?>"class="form-control  " id="username" placeholder="username">
-            <h4 class="text-danger "> <?php echo $errors['username_err']."!!!!!";?> </h4>
-            <h4 class="text-warning "> <?php echo $errors['mail_err'];?> </h4>
+            <h4 class="text-danger  bg-dark"> <?php echo $errors['username_err'];?> </h4>
+            <h4 class="text-warning  bg-dark"> <?php echo $errors['mail_err'];?> </h4>
           </div>
         <!-- <div class="form-group">
           <h4 class="text-center font-weight-bold"> Reset password </h4>
@@ -137,15 +137,15 @@ $con->close();
            <input type="text" class="form-control" id="EnterCode" aria-describeby="emailHelp" placeholder="Enter Code">
         </div> -->
         <div class="form-group">
-          <label for="InputPassword1">Password</label>
+          <label for="InputPassword1" class="text-white">Password</label>
           <input type="password" name="password" class="form-control" id="InputPassword1" placeholder="Password">
-          <h4 class="text-warning "> <?php echo $errors['password_err'];?> </h4>
+          <h4 class="text-warning  bg-dark"> <?php echo $errors['password_err'];?> </h4>
      
         </div>
         <div class="form-group">
-          <label for="Confirm Password">Confirm Password</label>
+          <label for="Confirm Password" class="text-white">Confirm Password</label>
           <input type="password" name="cpassword" class="form-control" id="InputPassword1" placeholder="Confirm Password">
-          <h4 class="text-warning "> <?php echo $errors['cpass_err'];?> </h4>
+          <h4 class="text-warning  bg-dark"> <?php echo $errors['cpass_err'];?> </h4>
         </div>
         <button type="submit" name="reset"class="btn btn-primary btn-block">Reset Password</button>
         <div class="form-footer">

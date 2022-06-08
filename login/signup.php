@@ -134,34 +134,34 @@ $con->close();
         
         <div class="form-group">
           <h4 class="text-center font-weight-bold"> Signup </h4>
-          <h5 class="text-warning "> <?php echo $errors['err'];?> </h4>
-          <label for="InputEmail1">Email Address</label>
-           <input type="email" name="email" value="<?php echo htmlspecialchars($email)?>"class="form-control" id="InputEmail1" aria-describeby="emailHelp" placeholder="Enter email">
-           <h4 class="text-warning "> <?php echo $errors['mail_err'];?> </h4>
+          <h5 class="text-warning bg-dark "> <?php echo $errors['err'];?> </h4>
+          <label for="InputEmail1" class="text-white">Email Address</label>
+           <input type="email" name="email" value="<?php echo htmlspecialchars($email)?>"class="form-control " id="InputEmail1" aria-describeby="emailHelp" placeholder="Enter email">
+           <h4 class="text-warning bg-dark "> <?php echo $errors['mail_err'];?> </h4>
         </div>
        
         <div class="form-group">
-            <label for="username">Username</label>
+            <label for="username" class="text-white">Username</label>
             <input type="text" name='username' value="<?php echo htmlspecialchars($username)?>"class="form-control  " id="username" placeholder="username">
-            <h4 class="text-warning "> <?php echo $errors['username_err'];?> </h4>
-            <h4 class="text-warning "> <?php echo $errors['user_err'];?> </h4>
+            <h4 class="text-warning  bg-dark"> <?php echo $errors['username_err'];?> </h4>
+            <h4 class="text-warning  bg-dark"> <?php echo $errors['user_err'];?> </h4>
           </div>
           <!-- <div class="form-group">
             <label for="username">Email</label>
             <input type="email" name='email'class="form-control" id="email" placeholder="email">
           </div> -->
         <div class="form-group">
-          <label for="InputPassword1">Password</label>
+          <label for="InputPassword1"class="text-white">Password</label>
           <input type="password" name ='password' class="form-control" id="InputPassword1" placeholder="Password">
-          <h4 class="text-warning "> <?php echo $errors['password_err'];?> </h4>
+          <h4 class="text-warning  bg-dark "> <?php echo $errors['password_err'];?> </h4>
         </div>
         <div class="form-group">
-            <label for="InputConfirmpassword">Confirm Password</label>
+            <label for="InputConfirmpassword" class="text-white">Confirm Password</label>
             <input type="password" name='confirmpassword' class="form-control" id="confirmpassword" placeholder=" Confirm Password">
-            <h4 class="text-warning "> <?php echo $errors['cpass_err'];?> </h4>
+            <h4 class="text-warning bg-dark"> <?php echo $errors['cpass_err'];?> </h4>
           </div>
         <button type="submit" value="submit" class="btn btn-primary btn-block">Submit</button>
-        <div class="form-footer">
+        <div class="form-footer text-white">
           <p>Already have an account? <a href="index.php">Log in</a></p>
           
         </div>

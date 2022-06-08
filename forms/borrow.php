@@ -191,8 +191,8 @@ if(isset($_POST['save'])){
               <button type="submit" name="submit" class="btn btn-info col-xs-5 col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
               <div class="col-sm-10">
                 <input type="text" name="assetno" class="form-control" value="<?php echo $assetno?>" id="scannedbarcode" placeholder="input_from_scanner">
-                <div class="text-danger"><?php echo $status.$statu;?></div>
-                <div class="text-danger"><?php echo $errors['assetno'];?></div>
+                <div class="  text-white"><?php echo $status.$statu;?></div>
+                <div class="   text-white"><?php echo $errors['assetno'];?></div>
                 <!-- <div class="text-danger"><?php echo $num;?></div> -->
               </div>
             </div>
@@ -200,7 +200,7 @@ if(isset($_POST['save'])){
               <label for="inputasset" class="col-sm-2 col-form-label">Asset</label>
               <div class="col-sm-10">
                 <input type="text"  value="<?php echo htmlspecialchars($assetname)?>" class="form-control" id="inputasset" placeholder="assset name">
-               
+                
               </div>
             </div>
             <div class="form-group row">
@@ -222,28 +222,28 @@ if(isset($_POST['save'])){
                   <option>civil</option>
                 
                 </select>
-                <div class="text-danger"><?php echo $errors['departm'];?></div>
+                <div class="text-white"><?php echo $errors['departm'];?></div>
               </div>
             </div>
             <div class="form-group row">
               <label for="inputRegno" class="col-sm-2 col-form-label">REG NO</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" value="<?php echo htmlspecialchars($regno)?>" name="regno" id="inputRegno" placeholder="inputregno">
-                <div class="text-danger"><?php echo $errors['regno'];?></div>
+                <div class="text-white"><?php echo $errors['regno'];?></div>
               </div>
             </div>
             <div class="form-group row">
               <label for="inputRegno" class="col-sm-2 col-form-label">Contact</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" value="<?php echo htmlspecialchars($regno)?>" name="contact" id="inputcontact" placeholder="contact">
-                <div class="text-danger"><?php echo $errors['regno'];?></div>
+                <div class="text-white"><?php echo $errors['contact'];?></div>
               </div>
             </div>
             <div class="form-group row">
               <label for="inputRegno" class="col-sm-2 col-form-label">Email</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" value="<?php echo htmlspecialchars($regno)?>" name="email" id="inputemail" placeholder="email">
-                <div class="text-danger"><?php echo $errors['regno'];?></div>
+                <div class="text-white"><?php echo $errors['email'];?></div>
               </div>
             </div>
             <div class="form-group row">
@@ -254,7 +254,7 @@ if(isset($_POST['save'])){
                   <option>long_term</option>
                   <option>Project</option>
                 </select>
-                <div class="text-danger"><?php echo $errors['period'];?></div>
+                <div class="text-white"><?php echo $errors['period'];?></div>
               </div>
               
             </div>

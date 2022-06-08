@@ -6,7 +6,7 @@ require_once('../powerscripts/logincheck.php');
 require_once("../databaseconnection/config.php") ;
 
 //construct query
-$sql='SELECT  department,reg_no,borrow_date,period,return_date,condition_,status_,assets.asset_name,assets.condition_,assets.asset_no ,accounts.username,accounts.username FROM borrow,assets,accounts WHERE borrow.asset_no=assets.asset_no AND borrow.user_id=accounts.user_id AND borrow.cleared_by=accounts.user_id ';
+$sql='SELECT  department,reg_no,borrow_date,period,return_date,condition_,status_,assets.asset_name,assets.condition_,assets.asset_no ,accounts.username,accounts.username FROM borrow,assets,accounts WHERE borrow.asset_no=assets.asset_no AND (borrow.user_id=accounts.user_id OR borrow.cleared_by=accounts.user_id) ';
 //make the query
 $result=mysqli_query($con,$sql);
 //fetch the results from the query as an array
@@ -25,7 +25,7 @@ mysqli_close($con);
 <html>
     <?php include('../basic_template/header.php');?>
     <div class="row py-6">
-                    <div class="col-lg-12 mx-auto">
+                    <div class="col-sm-12 col-md-12 col-lg-12  mx-auto">
                       <div class="card rounded shadow border-0">
                         <div class="card-body p-5 bg-white rounded">
                         <h4 class="text-center font-weight-bold"><u>TRANSCATIONS HISTORY REPORT</u> </h4>
@@ -36,7 +36,7 @@ mysqli_close($con);
                                 <tr>
                                   <th>ASSET NO</th>
                                   <th>ASSET NAME</th>
-                                  <th>TECH NAME</th>
+                                  <th>ISSUED BY</th>
                                   <th>DEPARTMENT </th>
                                   <th>REG NO</th>
                                   <th> BORROW DATE</th>

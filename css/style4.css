@@ -60,6 +60,7 @@ span {
 .wrapper {
     display: flex;
     align-items: stretch;
+    
 }
 
 #sidebar {
