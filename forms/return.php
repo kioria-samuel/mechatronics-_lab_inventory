@@ -3,12 +3,12 @@
 require_once('../powerscripts/logincheck.php');
 // Include config file
 require_once("../databaseconnection/config.php") ;
-$status=$condition=$assetno=$techname=$departm=$regno=$borrowd=$period=$returnd='';
+$status=$condition=$assetno=$techname=$departm=$regno=$borrowd=$period=$returnd=$gname=$pname='';
 //grab the borrowed record 
 if(isset($_POST['submit'])){
   // echo 'there is something';
    // Prepare a select statement where status is null
-   $sql = "SELECT asset_no,accounts.username,department,reg_no,borrow_date,period,return_date FROM borrow,accounts WHERE borrow.user_id=accounts.user_id AND borrow.asset_no =? AND (status_='borrowed' OR status_='overdue'OR status_='Uncleared')";
+   $sql = "SELECT asset_no,accounts.username,department,reg_no,borrow_date,period,return_date,status_,group_name,project_name FROM borrow,accounts WHERE borrow.user_id=accounts.user_id AND borrow.asset_no =? AND (status_='borrowed' OR status_='overdue'OR status_='Uncleared')";
           
    if($stmt = mysqli_prepare($con, $sql)){
        // Bind variables to the prepared statement as parameters
@@ -26,13 +26,13 @@ if(isset($_POST['submit'])){
             // $bind=mysqli_stmt_bind_result($stmt,$assetno,$assetname,$model);
             // $result=mysqli_fetch_row($bind);
             // print_r($result);
-            $stmt->bind_result($assetno,$techname,$departm,$regno,$borrowd,$period,$returnd);
+            $stmt->bind_result($assetno,$techname,$departm,$regno,$borrowd,$period,$returnd,$status_,$gname,$pname);
             $stmt->fetch();
             // print_r($assetno);
             // print_r($assetname);
             // print_r($model);
               
-              $status="borrowed component/uncleared asset";
+              $status="status:".$status_;
              // $assets=mysqli_fetch_all($stmt,MYSQLI_ASSOC);
            } else{
               //  echo "component not registred";
@@ -125,6 +125,18 @@ if(isset($_POST['clear'])){
               <label for="inputtechname" class="col-sm-2 col-form-label">Return date</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" value="<?php echo htmlspecialchars($returnd)?>" id="inputtechanme" placeholder="return_date">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputtechname" class="col-sm-2 col-form-label">Group name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($gname)?>" id="inputtechanme" placeholder="return_date">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputtechname" class="col-sm-2 col-form-label">Project name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($pname)?>" id="inputtechanme" placeholder="return_date">
               </div>
             </div>
 

@@ -34,7 +34,7 @@ if(mail($receiver, $subject, $body, $sender)){
 }
 
         //prepare an update statement where to upate the status column to overdue
-        $sql = "UPDATE borrow SET status_=?  WHERE id=? ";
+        $sql = "UPDATE borrow SET status_=?  WHERE borrow_id=? ";
         //make the query and pass connection
         $stmt = mysqli_prepare($con,$sql);
         //bid parameters

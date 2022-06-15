@@ -178,6 +178,7 @@ mysqli_close($con);
                 <div class="text-danger"><?php echo $errors['type'];?></div>
               </div>
             </div>
+            
              
             <div class="form-inline-block">
 

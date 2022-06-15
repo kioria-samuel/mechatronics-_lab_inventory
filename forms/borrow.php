@@ -8,10 +8,11 @@ $assetno=$status=$num=$statu='';
 $assetname=$model='';
 
 //initialize error variables
-$assetno=$assetname=$model=$type=$techname=$departm=$regno=$period=$returnd='';
-$errors=array('assetno'=>'','techname'=>'','departm'=>'','regno'=>'','period'=>'','returnd'=>'','contact'=>'','email'=>'');
+$assetno=$assetname=$model=$type=$techname=$departm=$regno=$period=$returnd=$email=$contact=$gname=$pname="";
+$errors=array('assetno'=>'','techname'=>'','departm'=>'','regno'=>'','period'=>'','returnd'=>'','contact'=>'','email'=>'','pname'=>'','gname'=>'');
 if(isset($_POST['submit'])){
 // echo 'there is something';
+//check whether the component is issued to another person
  // Prepare a select statement
  $sql = "SELECT assets.asset_no,asset_name,borrow.status_ FROM assets,borrow WHERE borrow.asset_no =? AND (borrow.status_='overdue' OR borrow.status_='borrowed' OR borrow.status_='Uncleared' OR assets.condition_='Uncleared')";
         
@@ -142,13 +143,68 @@ if(isset($_POST['save'])){
     if(array_filter($errors)){
 
     }else{
-      $assetno=mysqli_real_escape_string($con,$_POST['assetno']);
+      // check whether the optional fields are empty
+
+      if(!(empty($_POST['gname'])&&empty($_POST['pname']))){
+        // verify the optional data
+        $gname=$_POST['gname'];
+        if(!preg_match('/^[a-zA-Z0-9]+$/', $gname) === 0){
+          $errors['gname'] ='group name is invalid!';
+        }
+        //verify thr project name
+        $pname=$_POST['pname'];
+        if(!preg_match('/^[a-zA-Z0-9]+$/', $pname) === 0){
+          $errors['pname'] ='project name invalid!';
+        }
+        //check for the finaltime i there are any errors
+        if(!array_filter($errors)){
+          //insert the values
+          $assetno=mysqli_real_escape_string($con,$_POST['assetno']);
       $userid=mysqli_real_escape_string($con,$_POST['techname']);
       $departm=mysqli_real_escape_string($con,$_POST['departm']);
       $regno=mysqli_real_escape_string($con,$_POST['regno']);
       $contact=mysqli_real_escape_string($con,$_POST['contact']);
       $email=mysqli_real_escape_string($con,$_POST['email']);
       $period=mysqli_real_escape_string($con,$_POST['period']);
+      $groupname=mysqli_real_escape_string($con,$_POST['gname']);
+      $pname=mysqli_real_escape_string($con,$_POST['pname']);
+
+     // $returnd=mysqli_real_escape_string($con,$_POST['returnd']);
+      $status="borrowed";
+      $returnd=return_date($period);//call the date function to calcuate return date
+      
+      
+      //create a variable sql
+      $sql="INSERT INTO borrow(asset_no,user_id,department,reg_no,period,return_date,status_,contact,email,group_name,project_name)VALUES('$assetno','$userid', '$departm','$regno','$period','$returnd','$status','$contact','$email','$gname','$pname')";
+     
+      //SAVE TO DB AND CHECK
+    if(mysqli_query($con, $sql)){
+      $status='record saved';
+      //header('location:borrow.php');
+    }else{
+      $status='query error:'.mysqli_error($conn);
+    }
+
+
+        }else{
+          //display some errors
+          $status='solve the optinal data errors ';
+
+        }
+
+
+
+      }else{
+        // insert values to the that contais something
+        $assetno=mysqli_real_escape_string($con,$_POST['assetno']);
+      $userid=mysqli_real_escape_string($con,$_POST['techname']);
+      $departm=mysqli_real_escape_string($con,$_POST['departm']);
+      $regno=mysqli_real_escape_string($con,$_POST['regno']);
+      $contact=mysqli_real_escape_string($con,$_POST['contact']);
+      $email=mysqli_real_escape_string($con,$_POST['email']);
+      $period=mysqli_real_escape_string($con,$_POST['period']);
+     
+
      // $returnd=mysqli_real_escape_string($con,$_POST['returnd']);
       $status="borrowed";
       $returnd=return_date($period);//call the date function to calcuate return date
@@ -164,6 +220,8 @@ if(isset($_POST['save'])){
     }else{
       $status='query error:'.mysqli_error($conn);
     }
+      }
+      
       
     }
 
@@ -235,14 +293,14 @@ if(isset($_POST['save'])){
             <div class="form-group row">
               <label for="inputRegno" class="col-sm-2 col-form-label">Contact</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" value="<?php echo htmlspecialchars($regno)?>" name="contact" id="inputcontact" placeholder="contact">
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($contact)?>" name="contact" id="inputcontact" placeholder="contact">
                 <div class="text-white"><?php echo $errors['contact'];?></div>
               </div>
             </div>
             <div class="form-group row">
               <label for="inputRegno" class="col-sm-2 col-form-label">Email</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" value="<?php echo htmlspecialchars($regno)?>" name="email" id="inputemail" placeholder="email">
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($email)?>" name="email" id="inputemail" placeholder="email">
                 <div class="text-white"><?php echo $errors['email'];?></div>
               </div>
             </div>
@@ -258,13 +316,22 @@ if(isset($_POST['save'])){
               </div>
               
             </div>
-            <!-- <div class="form-group row">
-              <label for="inputtechname" class="col-sm-2 col-form-label">Return date</label>
+            <h4 class="text-white">Where applicable</h4>
+            <br>
+            <div class="form-group row">
+              <label for="Group name" class="col-sm-2 col-form-label">Group name</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" value="<?php echo htmlspecialchars($returnd)?>"  name="returnd" id="date" placeholder="return_date">
-                <div class="text-danger"><?php echo $errors['returnd'];?></div>
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($gname)?>"  name="gname" id="date" placeholder="group_name">
+                <div class="text-danger"><?php echo $errors['gname'];?></div>
               </div>
-            </div> -->
+            </div>
+            <div class="form-group row">
+              <label for="Group name" class="col-sm-2 col-form-label">Project Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" value="<?php echo htmlspecialchars($pname)?>"  name="pname" id="date" placeholder="project_name">
+                <div class="text-danger"><?php echo $errors['pname'];?></div>
+              </div>
+            </div>
             
             <div class="form-inline-block">
 

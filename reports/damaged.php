@@ -8,7 +8,7 @@ require_once('../powerscripts/logincheck.php');
 require("../databaseconnection/config.php") ;
 
 //construct query
-$sql='SELECT  assets.asset_no,assets.asset_name,assets.condition_,status_  FROM borrow,assets where assets.condition_="damaged" AND assets.asset_no=borrow.asset_no ';
+$sql='SELECT  asset_no,asset_name,condition_ FROM assets where condition_="damaged" ';
 //make the query
 $result=mysqli_query($con,$sql);
 //counting of records with damaged items
@@ -44,7 +44,7 @@ mysqli_close($con);
                                   <th>ASSET NO</th>
                                   <th>ASSET NAME</th>
                                   <th>CONDITION</th>
-                                  <th>STATUS</th>
+                                  
                                   
                                 </tr>
                               </thead>
@@ -54,7 +54,7 @@ mysqli_close($con);
                                   <td><?php echo htmlspecialchars($borrow['asset_no']);?></td>
                                   <td><?php echo htmlspecialchars($borrow['asset_name']);?></td>
                                   <td><?php echo htmlspecialchars($borrow['condition_']);?></td>
-                                  <td><?php echo htmlspecialchars($borrow['status_']);?></td>
+                                 
                                  
                                 </tr>
                                 <?php

@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
               <button type="submit" name="submit" class="btn btn-info col-sm-2  "><i class="fa fa-barcode"></i>|scan</button>
               <div class="col-sm-10">
                 <input type="text" class="form-control"  value="<?php echo $assetno?>" name ="assetno" id="scannedbarcode" placeholder="input_from_scanner">
-                <div class="text-danger"><?php echo $status;?></div>
+                <div class="text-white"><?php echo $status;?></div>
               </div>
             </div>
              <div class="form-group row">
