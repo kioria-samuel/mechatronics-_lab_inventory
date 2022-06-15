@@ -27,8 +27,8 @@ $damaged_count=count_items_damaged();
      <!--end   o dashboard -->
  <h3 class="text-light">DEFAULTERS</h3>
  <hr>
- <div class="text-dark"><?php  echo "Feedback:"."!!!!". $overdue_status?></div>
-   <div class="text-dark text-center"><?php  echo "Maling status:"."!!!!". $mailing_status?></div>
+ <div class="text-light"><?php  echo "Feedback:". $overdue_status?></div>
+   <!-- <div class="text-dark text-center"><?php  //echo "Maling status:"."!!!!". $mailing_status?></div> -->
    <!-- <button class="btn btn-success" onclick="printTable();"><span class="glyphicon glyphicon-print"></span> Print</button> -->
  <div class="table-responsive bg-white">
 

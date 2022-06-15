@@ -3,7 +3,8 @@
 require_once('logincheck.php');
 // Include config file
 require("databaseconnection/config.php") ;
-
+//create some variabes
+$feedback="";
 
 //check if the data is sent by the post method to the server
 if(isset($_POST['save'])){
@@ -17,7 +18,7 @@ if(isset($_POST['save'])){
       //bid parameters
        mysqli_stmt_bind_param($stmt, "s", $username);
       if(mysqli_stmt_execute($stmt)){
-          echo "changes wwere succesully saved ";
+        $feedback= "account deleted!!! ";
       
     }
 
@@ -41,7 +42,7 @@ if(isset($_POST['save'])){
         $message = '<p> Your account has been activated.You can now log in<br>regards<br>Administrator<br>Mechatronics lab inventory :</p>';
         mail($_POST['email'], $subject, $message, $headers);
         //mail($_POST['email'], $subject, $message, $headers);
-          echo "changes wwere succesully saved ";
+        $feedback="account activated...";
       
     }
 }

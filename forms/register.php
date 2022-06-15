@@ -6,7 +6,7 @@ require_once("../databaseconnection/config.php") ;
 
 //initialize error variables
 $assetno=$assetname=$model=$status=$type=$query_err='';
-$errors=array('assetno'=>'','assetname'=>'','model'=>'','type'=>'',);
+$errors=array('assetno'=>'','assetname'=>'','model'=>'','type'=>'','category'=>'');
 //check whether the data is sent 
 if(isset($_POST['scan'])){
   //check asset no
@@ -31,7 +31,7 @@ if(isset($_POST['scan'])){
        if(!($num >0)){
         $status="asset_no unique.can proceed with registration of asset";
       }else{
-        $query_err= 'query error:!!!!!!! i.e the asset_no is registered  to another asset.its a violation to the data rule';
+        $query_err= 'query error:!!!!!!! i.e the asset_no is registered  to another asset.please choose another';
       }
   }else{
     $status="solve the errors";
@@ -71,7 +71,7 @@ if(isset($_POST['save'])){
     $errors['model'] = 'model required!';
   }else{
     $model=$_POST['model'];
-    if(!preg_match('/^[a-zA-Z0-9]+$/',$model ) == 0){
+    if(!preg_match('/^[a-zA-Z0-9]+$/',$model ) === 0){
       $errors['model'] ='model invalid!';
     }
   }
@@ -91,12 +91,13 @@ if(isset($_POST['save'])){
       $model=mysqli_real_escape_string($con,$_POST['model']);
       $type=mysqli_real_escape_string($con,$_POST['type']);
       $condition=mysqli_real_escape_string($con,$_POST['condition']);
+      $category=mysqli_real_escape_string($con,$_POST['category']);
       $id=$_SESSION['id'];
      
         
 
       //create a variable sql
-      $sql="INSERT INTO assets(asset_no,asset_name,model,type,condition_,user_id)VALUES('$assetno','$assetname' , '$model','$type','$condition', ' $id' )";
+      $sql="INSERT INTO assets(asset_no,asset_name,model,type,condition_,category,user_id)VALUES('$assetno','$assetname' , '$model','$type','$condition', '$category',' $id' )";
      
       //SAVE TO DB AND CHECK
       $result=mysqli_query($con, $sql);
@@ -161,7 +162,8 @@ mysqli_close($con);
               <div class="col-sm-10">
                 <!-- <input type="text" class="form-control" id="inputtype" placeholder="select"> -->
                 <select class="form-control" name="type" value="<?php echo htmlspecialchars($type)  ?>" id="typeselect">
-                  <option>consumable</option>
+                <option>none</option>  
+                <option>consumable</option>
                   <option>fixed</option>
                 </select>
                 <div class="text-danger"><?php echo $errors['type'];?></div>
@@ -172,8 +174,24 @@ mysqli_close($con);
               <div class="col-sm-10 ">
                 <!-- <input type="text" class="form-control" id="inputtype" placeholder="select"> -->
                 <select class="form-control" name="condition" value=">" id="typeselect">
-                  <option>okey</option>
+                <option>none</option>  
+                <option>okey</option>
                   <option>damaged</option>
+                </select>
+                <div class="text-danger"><?php echo $errors['type'];?></div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputtype" class="col-sm-2  form-label">Category</label>
+              <div class="col-sm-10 ">
+                <!-- <input type="text" class="form-control" id="inputtype" placeholder="select"> -->
+                <select class="form-control" name="category" value=">" id="typeselect">
+                <option>none</option>
+                  <option>electronic</option>
+                  <option>furniture</option>
+                  <option>mechanical</option>
+                  
                 </select>
                 <div class="text-danger"><?php echo $errors['type'];?></div>
               </div>
