@@ -101,6 +101,7 @@ if ($stmt = $con->prepare('SELECT user_id, password,account_type FROM accounts W
         <div class="form-footer text-white">
           <p > Don't have an account? <a href="../login/signup.php">Sign Up</a></p>
           <p> Forgot passsword? <a href="username.php">Reset Password</a></p>
+          <p> Student registraton <a href="student_reg.php">student registration</a></p>
         </div>
         </form>
       </section>
