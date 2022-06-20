@@ -75,14 +75,14 @@ $damaged_count=count_items_damaged();
 <hr>
 <!-- start o cards -->
 <div class="row">
-    <div class="col-sm-2">
+    <div class="col-sm-2 col-lg-3">
       <div class="card">
         <div class="card-body bg-white">
           <h5 class="card-title text-warning">Damaged</h5>
           <hr>
           <h6 class="card-text">Total:<?php echo $damaged_count ?></h6>
           <!-- <p class="card-text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p> -->
-          <a href="../reports/damaged.php" class="btn btn-primary">view in detail</a>
+          <a href="../reports/damaged.php" class="btn btn-primary btn-sm-2">view in detail</a>
         </div>
       </div>
     </div>

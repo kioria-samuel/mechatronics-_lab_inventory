@@ -1,7 +1,16 @@
-<a href="../forms/register.php">
+                    <a href="#registermenu"data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-feather-alt"></i>
                         Register
                     </a>
+                    <ul class="collapse list-unstyled" id="registermenu">
+                        <li>
+                            <a href="../forms/register.php">Unique</a>
+                        </li>
+                        <li>
+                            <a href="../forms/batch.php">Batch</a>
+                        </li>
+                       
+                    </ul>
                     <a href="#borrowmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <!-- <i class="fas fa-copy"></i> -->
                         <i class="fa-solid fa-hand-holding-dollar"></i>

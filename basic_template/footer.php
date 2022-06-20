@@ -25,6 +25,18 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
+    <!-- toggling input ield in  -->
+<script  type="text/javascript">
+  $(document).ready(function(){
+  $("select[name='action']").on('change',function(){
+    if($(this).val()==1){
+      $("input[name='add_quantity']").prop("disabled",false);
+    }else{
+      $("input[name='add_quantity']").prop("disabled",true);
+    }
+  });
+});
+</script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
