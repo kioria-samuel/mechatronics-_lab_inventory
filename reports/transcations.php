@@ -12,7 +12,7 @@ require('../powerscripts/delete.php');
 
 
 //construct query
-$sql='SELECT  department,reg_no,borrow_date,period,return_date,condition_,status_,group_name,project_name,borrow_id,assets.asset_name,assets.condition_,accounts.username,assets.asset_no,borrow.cleared_by FROM borrow,assets,accounts WHERE borrow.asset_no=assets.asset_no AND borrow.user_id=accounts.user_id OR borrow.cleared_by=accounts.user_id ';
+$sql='SELECT  student_details.department,borrow.reg_no,borrow_date,period,return_date,condition_,status_,groups.group_name,groups.p_name,borrow_id,assets.asset_name,borrow.group_id,assets.condition_,accounts.username,assets.asset_no,borrow.cleared_by FROM borrow,assets,accounts,student_details,groups WHERE borrow.asset_no=assets.asset_no AND borrow.group_id=groups.group_id AND student_details.reg_no=borrow.reg_no AND(borrow.user_id=accounts.user_id OR borrow.cleared_by=accounts.user_id )';
 //make the query
 $result=mysqli_query($con,$sql);
 //fetch the results from the query as an array

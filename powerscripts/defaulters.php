@@ -3,7 +3,7 @@
 
 
 //construct query
-$sql='SELECT  borrow.asset_no,reg_no,assets.condition_,status_,contact,email  FROM borrow,assets where borrow.asset_no=assets.asset_no AND( status_="Uncleared" OR status_="overdue")';
+$sql='SELECT  borrow.asset_no,borrow.reg_no,assets.condition_,status_,student_details.contact,student_details.email  FROM borrow,assets,student_details where borrow.asset_no=assets.asset_no AND borrow.reg_no=student_details.reg_no AND( status_="Uncleared" OR status_="overdue")';
 //make the query
 $result=mysqli_query($con,$sql);
 //counting of records with damaged items

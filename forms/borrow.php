@@ -83,15 +83,15 @@ if(isset($_POST['save'])){
       $errors['techname'] ='techname invalid!';
     }
   }
-   //check model
-  if (empty($_POST['departm'])){
-    $errors['departm'] = 'department required!';
-  }else{
-    $departm=$_POST['departm'];
-    if(!preg_match('/^[a-zA-Z0-9]+$/',$departm ) === 0){
-      $errors['departm'] ='department invalid!';
-    }
-  }
+  //  //check model
+  // if (empty($_POST['departm'])){
+  //   $errors['departm'] = 'department required!';
+  // }else{
+  //   $departm=$_POST['departm'];
+  //   if(!preg_match('/^[a-zA-Z0-9]+$/',$departm ) === 0){
+  //     $errors['departm'] ='department invalid!';
+  //   }
+  // }
    //check type
   if (empty($_POST['regno'])){
     $errors['regno'] = 'regno required!';
@@ -103,24 +103,24 @@ if(isset($_POST['save'])){
   }
   //check contact
     
-    if (empty($_POST['contact'])){
-      $errors['contact'] = 'contact required!';
-    }else{
-      $contact=$_POST['contact'];
-      if(!preg_match('/^[a-zA-Z0-9]+$/', $contact) === 0){
-        $errors['contact'] ='contact invalid!';
-      }
-    }
-     //validate email
+    // if (empty($_POST['contact'])){
+    //   $errors['contact'] = 'contact required!';
+    // }else{
+    //   $contact=$_POST['contact'];
+    //   if(!preg_match('/^[a-zA-Z0-9]+$/', $contact) === 0){
+    //     $errors['contact'] ='contact invalid!';
+    //   }
+    // }
+    //  //validate email
     
-     if (empty($_POST['email'])){
-      $errors['email'] = 'email required!';
-    }else{
-      $email=$_POST['email'];
-      if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-        $errors['email'] =' invalid email!';
-      }
-    }
+    //  if (empty($_POST['email'])){
+    //   $errors['email'] = 'email required!';
+    // }else{
+    //   $email=$_POST['email'];
+    //   if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+    //     $errors['email'] =' invalid email!';
+    //   }
+    // }
     
     //check period
   if (empty($_POST['period'])){
@@ -161,10 +161,10 @@ if(isset($_POST['save'])){
           //insert the values
           $assetno=mysqli_real_escape_string($con,$_POST['assetno']);
       $userid=mysqli_real_escape_string($con,$_POST['techname']);
-      $departm=mysqli_real_escape_string($con,$_POST['departm']);
+      // $departm=mysqli_real_escape_string($con,$_POST['departm']);
       $regno=mysqli_real_escape_string($con,$_POST['regno']);
-      $contact=mysqli_real_escape_string($con,$_POST['contact']);
-      $email=mysqli_real_escape_string($con,$_POST['email']);
+      // $contact=mysqli_real_escape_string($con,$_POST['contact']);
+      // $email=mysqli_real_escape_string($con,$_POST['email']);
       $period=mysqli_real_escape_string($con,$_POST['period']);
       $groupname=mysqli_real_escape_string($con,$_POST['gname']);
       $pname=mysqli_real_escape_string($con,$_POST['pname']);
@@ -175,7 +175,7 @@ if(isset($_POST['save'])){
       
       
       //create a variable sql
-      $sql="INSERT INTO borrow(asset_no,user_id,department,reg_no,period,return_date,status_,contact,email,group_name,project_name)VALUES('$assetno','$userid', '$departm','$regno','$period','$returnd','$status','$contact','$email','$gname','$pname')";
+      $sql="INSERT INTO borrow(asset_no,user_id,reg_no,period,return_date,status_,group_name,project_name)VALUES('$assetno','$userid', '$departm','$regno','$period','$returnd','$status','$contact','$email','$gname','$pname')";
      
       //SAVE TO DB AND CHECK
     if(mysqli_query($con, $sql)){
@@ -211,7 +211,7 @@ if(isset($_POST['save'])){
       
       
       //create a variable sql
-      $sql="INSERT INTO borrow(asset_no,user_id,department,reg_no,period,return_date,status_,contact,email)VALUES('$assetno','$userid', '$departm','$regno','$period','$returnd','$status','$contact','$email')";
+      $sql="INSERT INTO borrow(asset_no,user_id,reg_no,period,return_date,status_,)VALUES('$assetno','$userid','$regno','$period','$returnd','$status')";
      
       //SAVE TO DB AND CHECK
     if(mysqli_query($con, $sql)){
@@ -284,7 +284,8 @@ if(isset($_POST['save'])){
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputRegno" class="col-sm-2 col-form-label">REG NO</label>
+            <button type="submit" name="submit" class="btn btn-info col-xs-5 col-sm-2  "><i class="fa-brands fa-searchengin"></i>veriy</button>
+              <!-- <label for="inputRegno" class="col-sm-2 col-form-label">REG NO</label> -->
               <div class="col-sm-10">
                 <input type="text" class="form-control" value="<?php echo htmlspecialchars($regno)?>" name="regno" id="inputRegno" placeholder="inputregno">
                 <div class="text-white"><?php echo $errors['regno'];?></div>
@@ -319,7 +320,8 @@ if(isset($_POST['save'])){
             <h4 class="text-white">Where applicable</h4>
             <br>
             <div class="form-group row">
-              <label for="Group name" class="col-sm-2 col-form-label">Group name</label>
+            <button type="submit" name="submit" class="btn btn-info col-xs-5 col-sm-2  "><i class="fa-brands fa-searchengin"></i>verify</button>
+
               <div class="col-sm-10">
                 <input type="text" class="form-control" value="<?php echo htmlspecialchars($gname)?>"  name="gname" id="date" placeholder="group_name">
                 <div class="text-danger"><?php echo $errors['gname'];?></div>

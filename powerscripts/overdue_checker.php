@@ -4,7 +4,7 @@ $overdue_status=$mailing_status="";
 
 require("databaseconnection/config.php");//include connection to database
 //construct query
-$sql='SELECT  borrow_id,asset_no,return_date,email  FROM borrow where status_="borrowed"';
+$sql='SELECT  borrow_id,asset_no,borrow.reg_no,return_date,student_details.email  FROM borrow,student_details where status_="borrowed"AND borrow.reg_no=student_details.reg_no ';
 //make the query
 mysqli_query($con,$sql);
 $result=mysqli_query($con,$sql);
