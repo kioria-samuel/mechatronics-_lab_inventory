@@ -48,8 +48,9 @@
             <!-- <i class="fas fa-books-medical"></i> -->
             <!-- <i class="fa-solid fa-books-medical"></i> -->
             <!-- <i class="fas fa-pallet fa-3x text-centre"></i> -->
-                <h3 class="text-centre">Mechatronics Inventory </h3>
+                <h3 class="text-centre">Mechatronics Inventory v1.0</h3>
                 <strong>MLI</strong>
+                <strong>v1.0</strong>
             </div>
 
             <ul class="list-unstyled components">

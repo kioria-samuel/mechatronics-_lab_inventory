@@ -97,7 +97,7 @@ if ($stmt = $con->prepare('SELECT user_id, password,account_type FROM accounts W
           <label for="InputPassword1" class="text-white">Password</label>
           <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
         </div>
-        <button type="submit" class="btn  btn-primary btn-text-white btn-block"><a href="#" class="text-white">Log in</a></button>
+        <button type="submit" class="btn  btn-primary btn-text-white btn-block"><a href="" class="text-white">Log in</a></button>
         <div class="form-footer text-white">
           <p > Don't have an account? <a href="../login/signup.php">Sign Up</a></p>
           <p> Forgot passsword? <a href="username.php">Reset Password</a></p>
